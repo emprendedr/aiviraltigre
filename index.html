@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema de Automatización de Ingresos en 5 Pasos | AiViralElTigre</title>
+    <title>Sistema de Automatización en 5 Pasos | AiViralElTigre</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -29,7 +29,22 @@
             overflow-x: hidden;
         }
 
-        /* Header Moderno */
+        .page-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 999;
+            display: none;
+        }
+
+        .page-overlay.active {
+            display: block;
+        }
+
+        /* Header */
         .header {
             position: fixed;
             top: 0;
@@ -60,26 +75,7 @@
             font-size: 1.5rem;
         }
 
-        .whatsapp-header-btn {
-            background: linear-gradient(135deg, var(--whatsapp), #128c7e);
-            color: white;
-            padding: 12px 25px;
-            border-radius: 30px;
-            font-weight: 700;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
-        }
-
-        .whatsapp-header-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
-        }
-
-        /* Hero Section con Video */
+        /* Hero Section */
         .hero-section {
             padding-top: 100px;
             min-height: 100vh;
@@ -146,24 +142,6 @@
             line-height: 1.6;
         }
 
-        .hero-features {
-            list-style: none;
-            margin-bottom: 40px;
-        }
-
-        .hero-features li {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 15px;
-            font-size: 1.1rem;
-        }
-
-        .hero-features i {
-            color: var(--accent);
-            font-size: 1.2rem;
-        }
-
         /* Video Container */
         .video-container {
             background: var(--secondary);
@@ -195,8 +173,9 @@
         .video-wrapper {
             position: relative;
             width: 100%;
-            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            padding-bottom: 56.25%;
             height: 0;
+            background: #000;
         }
 
         #youtube-player {
@@ -222,56 +201,30 @@
             font-weight: 700;
         }
 
-        .timer-icon {
-            font-size: 1.2rem;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { opacity: 1; }
-            50% { opacity: 0.5; }
-            100% { opacity: 1; }
-        }
-
         /* WhatsApp Popup (aparece a los 5 minutos) */
         .whatsapp-popup {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(10, 10, 15, 0.95);
-            z-index: 2000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.8);
+            background: linear-gradient(135deg, var(--secondary), #0a0a0f);
+            padding: 40px 30px;
+            border-radius: 25px;
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+            border: 3px solid rgba(37, 211, 102, 0.3);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9);
+            z-index: 1001;
             opacity: 0;
             pointer-events: none;
-            transition: opacity 0.8s ease;
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         }
 
         .whatsapp-popup.active {
             opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
             pointer-events: all;
-        }
-
-        .popup-content {
-            background: linear-gradient(135deg, var(--secondary), #0a0a0f);
-            padding: 50px 40px;
-            border-radius: 25px;
-            text-align: center;
-            max-width: 600px;
-            width: 90%;
-            border: 3px solid rgba(37, 211, 102, 0.3);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
-            animation: popupAppear 0.8s ease 0.3s both;
-            position: relative;
-        }
-
-        @keyframes popupAppear {
-            from { opacity: 0; transform: translateY(50px) scale(0.9); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
         }
 
         .popup-icon {
@@ -287,25 +240,25 @@
         }
 
         .popup-title {
-            font-size: 2.2rem;
+            font-size: 1.8rem;
             font-weight: 900;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             color: var(--accent);
         }
 
-        .popup-text {
-            font-size: 1.2rem;
+        .popup-subtitle {
+            font-size: 1.1rem;
             color: var(--text-muted);
-            margin-bottom: 30px;
-            line-height: 1.6;
+            margin-bottom: 25px;
+            line-height: 1.5;
         }
 
-        .popup-btn {
+        .whatsapp-btn {
             background: linear-gradient(135deg, var(--whatsapp), #128c7e);
             color: white;
-            padding: 18px 50px;
+            padding: 18px 40px;
             border-radius: 50px;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             font-weight: 900;
             text-decoration: none;
             display: inline-flex;
@@ -316,17 +269,55 @@
             border: none;
             cursor: pointer;
             margin-bottom: 20px;
+            width: 100%;
+            justify-content: center;
         }
 
-        .popup-btn:hover {
-            transform: translateY(-5px) scale(1.05);
+        .whatsapp-btn:hover {
+            transform: translateY(-3px);
             box-shadow: 0 15px 40px rgba(37, 211, 102, 0.7);
         }
 
-        .popup-note {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            font-style: italic;
+        .waiting-message {
+            background: rgba(245, 158, 11, 0.1);
+            padding: 15px;
+            border-radius: 15px;
+            margin-top: 20px;
+            border-left: 4px solid var(--accent);
+        }
+
+        .waiting-message p {
+            color: var(--text);
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .waiting-message i {
+            color: var(--accent);
+            animation: pulse 1.5s infinite;
+        }
+
+        .close-popup {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .close-popup:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(90deg);
         }
 
         /* Pasos del Sistema */
@@ -484,11 +475,6 @@
                 font-size: 1.5rem;
             }
             
-            .whatsapp-header-btn {
-                padding: 10px 20px;
-                font-size: 0.9rem;
-            }
-            
             .hero-title {
                 font-size: 2.2rem;
             }
@@ -501,20 +487,20 @@
                 font-size: 2.5rem;
             }
             
-            .popup-content {
-                padding: 40px 25px;
+            .whatsapp-popup {
+                padding: 30px 20px;
             }
             
             .popup-title {
-                font-size: 1.8rem;
+                font-size: 1.5rem;
             }
             
-            .popup-text {
-                font-size: 1.1rem;
+            .popup-subtitle {
+                font-size: 1rem;
             }
             
-            .popup-btn {
-                padding: 16px 40px;
+            .whatsapp-btn {
+                padding: 16px 30px;
                 font-size: 1.1rem;
             }
             
@@ -537,16 +523,15 @@
     </style>
 </head>
 <body>
+    <!-- Overlay para bloquear interacción -->
+    <div class="page-overlay" id="page-overlay"></div>
+
     <!-- Header -->
     <header class="header">
         <div class="logo">
             <i class="fas fa-bolt"></i>
             AiViralElTigre
         </div>
-        <a href="https://wa.link/kbjaz7" target="_blank" class="whatsapp-header-btn">
-            <i class="fab fa-whatsapp"></i>
-            WhatsApp
-        </a>
     </header>
 
     <!-- Hero Section -->
@@ -555,40 +540,44 @@
         <div class="hero-container">
             <div class="hero-content">
                 <span class="hero-badge">
-                    <i class="fas fa-crown"></i> Sistema Comprobado
+                    <i class="fas fa-crown"></i> Acceso Exclusivo
                 </span>
                 <h1 class="hero-title">
-                    Automatiza Tus Ingresos en Solo <span style="color: var(--accent);">5 Pasos</span>
+                    Sistema de 5 Pasos Para<br>Automatizar Tus <span style="color: var(--accent);">Ingresos</span>
                 </h1>
                 <p class="hero-subtitle">
-                    Descubre el método paso a paso que ya ha generado más de $50,000 en ingresos pasivos. 
-                    Sin complicaciones, sin experiencia previa, solo resultados.
+                    Descubre el método paso a paso que ya está generando ingresos pasivos. 
+                    Mira el video completo y al minuto 5 obtén tu código de acceso exclusivo.
                 </p>
-                <ul class="hero-features">
-                    <li><i class="fas fa-check-circle"></i> Método de 5 pasos comprobado</li>
-                    <li><i class="fas fa-check-circle"></i> Ingresos desde la primera semana</li>
-                    <li><i class="fas fa-check-circle"></i> 100% automatizado con IA</li>
-                    <li><i class="fas fa-check-circle"></i> Soporte personalizado 24/7</li>
-                </ul>
-                <a href="#video-section" class="whatsapp-header-btn" style="background: linear-gradient(135deg, var(--accent), #fbbf24); box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);">
-                    <i class="fas fa-play-circle"></i>
-                    Ver Video Explicativo
-                </a>
+                <div style="margin-top: 40px;">
+                    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                        <i class="fas fa-play-circle" style="color: var(--accent); font-size: 1.5rem;"></i>
+                        <span>Mira el video explicativo completo</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                        <i class="fas fa-clock" style="color: var(--accent); font-size: 1.5rem;"></i>
+                        <span>Al minuto 5 obtendrás tu código de acceso</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <i class="fas fa-key" style="color: var(--accent); font-size: 1.5rem;"></i>
+                        <span>Código exclusivo para acceso VIP al sistema</span>
+                    </div>
+                </div>
             </div>
             
-            <div class="video-container" id="video-section">
+            <div class="video-container">
                 <div class="video-header">
-                    <h3>Video Explicativo Completo</h3>
-                    <p>Duración: 8:15 min • Mira hasta el minuto 5 para acción especial</p>
+                    <h3>Clase Exclusiva - Sistema de 5 Pasos</h3>
+                    <p>Duración: 8:15 min • Código de acceso al minuto 5</p>
                 </div>
                 <div class="video-wrapper">
                     <!-- YouTube Player -->
                     <div id="youtube-player"></div>
                 </div>
                 <div class="video-timer">
-                    <i class="fas fa-clock timer-icon"></i>
+                    <i class="fas fa-clock" style="animation: pulse 2s infinite;"></i>
                     <span id="time-display">0:00 / 8:15</span>
-                    <span id="countdown-info">(Redirección en 5:00)</span>
+                    <span id="countdown-info">(Código en 5:00)</span>
                 </div>
             </div>
         </div>
@@ -596,20 +585,28 @@
 
     <!-- WhatsApp Popup (aparece a los 5 minutos) -->
     <div class="whatsapp-popup" id="whatsapp-popup">
-        <div class="popup-content">
-            <div class="popup-icon">
-                <i class="fab fa-whatsapp"></i>
-            </div>
-            <h2 class="popup-title">¡PRECISAMENTE LO QUE NECESITAS!</h2>
-            <p class="popup-text">
-                Has visto los primeros 5 minutos del sistema. <strong>Ahora es el momento perfecto para actuar.</strong> 
-                Contacta ahora y recibe acceso inmediato + guía personalizada.
+        <button class="close-popup" id="close-popup">
+            <i class="fas fa-times"></i>
+        </button>
+        
+        <div class="popup-icon">
+            <i class="fab fa-whatsapp"></i>
+        </div>
+        <h2 class="popup-title">¡HAZ LLEGADO AL PUNTO CLAVE!</h2>
+        <p class="popup-subtitle">
+            Has visto los primeros 5 minutos de la clase. Ahora es el momento de obtener tu código de acceso VIP.
+        </p>
+        
+        <a href="https://wa.link/kbjaz7" target="_blank" class="whatsapp-btn" id="popup-whatsapp-btn">
+            <i class="fab fa-whatsapp"></i>
+            PIDE EL CÓDIGO DE LA CLASE
+        </a>
+        
+        <div class="waiting-message">
+            <p>
+                <i class="fas fa-user-check"></i>
+                ESPERA EN UN MOMENTO ALGUIEN TE ATENDERÁ
             </p>
-            <a href="https://wa.link/kbjaz7" target="_blank" class="popup-btn" id="popup-whatsapp-btn">
-                <i class="fab fa-whatsapp"></i>
-                Acceso Inmediato por WhatsApp
-            </a>
-            <p class="popup-note">✅ Solo 10 spots disponibles hoy • Respuesta en menos de 3 minutos</p>
         </div>
     </div>
 
@@ -620,11 +617,11 @@
             <div class="step-card">
                 <div class="step-number">1</div>
                 <div class="step-icon">
-                    <i class="fas fa-user-plus"></i>
+                    <i class="fas fa-key"></i>
                 </div>
-                <h3 class="step-title">Configuración Inicial</h3>
+                <h3 class="step-title">Código de Acceso</h3>
                 <p class="step-description">
-                    Te guiamos paso a paso para configurar tu sistema en menos de 30 minutos.
+                    Obtén tu código exclusivo al minuto 5 del video para desbloquear el sistema completo.
                 </p>
             </div>
             
@@ -633,9 +630,9 @@
                 <div class="step-icon">
                     <i class="fas fa-robot"></i>
                 </div>
-                <h3 class="step-title">Activación de IA</h3>
+                <h3 class="step-title">Configuración IA</h3>
                 <p class="step-description">
-                    Nuestra inteligencia artificial comienza a trabajar automáticamente.
+                    Configuración automatizada con inteligencia artificial en menos de 30 minutos.
                 </p>
             </div>
             
@@ -644,9 +641,9 @@
                 <div class="step-icon">
                     <i class="fas fa-bullseye"></i>
                 </div>
-                <h3 class="step-title">Generación de Leads</h3>
+                <h3 class="step-title">Generación Automática</h3>
                 <p class="step-description">
-                    El sistema atrae clientes potenciales las 24 horas sin tu intervención.
+                    El sistema comienza a generar leads y oportunidades automáticamente.
                 </p>
             </div>
             
@@ -655,20 +652,20 @@
                 <div class="step-icon">
                     <i class="fas fa-chart-line"></i>
                 </div>
-                <h3 class="step-title">Automatización de Ventas</h3>
+                <h3 class="step-title">Monetización</h3>
                 <p class="step-description">
-                    Conversiones automáticas mientras tú duermes o disfrutas tu tiempo.
+                    Conversión automática de oportunidades en ingresos recurrentes.
                 </p>
             </div>
             
             <div class="step-card">
                 <div class="step-number">5</div>
                 <div class="step-icon">
-                    <i class="fas fa-money-bill-wave"></i>
+                    <i class="fas fa-expand-arrows-alt"></i>
                 </div>
-                <h3 class="step-title">Escalación de Ingresos</h3>
+                <h3 class="step-title">Escalación</h3>
                 <p class="step-description">
-                    Duplica y triplica tus resultados con nuestras estrategias avanzadas.
+                    Duplica y triplica tus resultados con estrategias avanzadas de crecimiento.
                 </p>
             </div>
         </div>
@@ -676,15 +673,16 @@
 
     <!-- CTA Final -->
     <section class="cta-section">
-        <h2 class="cta-title">¿Listo para Transformar Tu Realidad?</h2>
+        <h2 class="cta-title">¿Listo para Obtener Tu Código de Acceso?</h2>
         <p class="cta-text">
-            Más de 300 personas ya están generando ingresos pasivos con nuestro sistema. 
-            No necesitas experiencia, solo la decisión de comenzar. Tu futuro automatizado comienza hoy.
+            Mira el video completo y al minuto 5 obtendrás tu código exclusivo para acceder al sistema 
+            completo de automatización de ingresos. Más de 300 personas ya lo están utilizando.
         </p>
-        <a href="https://wa.link/kbjaz7" target="_blank" class="popup-btn" style="font-size: 1.4rem; padding: 20px 60px;">
-            <i class="fab fa-whatsapp"></i>
-            Quiero Comenzar Ahora
-        </a>
+        <div class="video-container" style="max-width: 800px; margin: 0 auto;">
+            <div class="video-wrapper">
+                <div id="youtube-player-2"></div>
+            </div>
+        </div>
     </section>
 
     <!-- WhatsApp Float -->
@@ -695,6 +693,7 @@
     <script>
         // Variables globales
         let player;
+        let player2;
         let videoDuration = 0;
         let timeUpdateInterval;
         let popupShown = false;
@@ -702,9 +701,11 @@
         const targetSeconds = targetMinute * 60;
         
         const popup = document.getElementById('whatsapp-popup');
+        const pageOverlay = document.getElementById('page-overlay');
         const timeDisplay = document.getElementById('time-display');
         const countdownInfo = document.getElementById('countdown-info');
         const popupWhatsappBtn = document.getElementById('popup-whatsapp-btn');
+        const closePopup = document.getElementById('close-popup');
 
         // 1. Cargar API de YouTube
         const tag = document.createElement('script');
@@ -712,7 +713,7 @@
         const firstScriptTag = document.getElementsByTagName('script')[0];
         firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-        // 2. Crear reproductor
+        // 2. Crear reproductor principal
         function onYouTubeIframeAPIReady() {
             player = new YT.Player('youtube-player', {
                 videoId: '2bWD3uLcwss',
@@ -728,6 +729,20 @@
                 events: {
                     'onReady': onPlayerReady,
                     'onStateChange': onPlayerStateChange
+                }
+            });
+            
+            // Segundo reproductor (opcional, para la sección final)
+            player2 = new YT.Player('youtube-player-2', {
+                videoId: '2bWD3uLcwss',
+                playerVars: {
+                    'autoplay': 0,
+                    'mute': 0,
+                    'controls': 1,
+                    'showinfo': 0,
+                    'rel': 0,
+                    'modestbranding': 1,
+                    'enablejsapi': 1
                 }
             });
         }
@@ -778,6 +793,10 @@
                     
                     // Verificar si llegó al minuto 5
                     if (currentTime >= targetSeconds && !popupShown) {
+                        // PAUSAR EL VIDEO
+                        player.pauseVideo();
+                        
+                        // Mostrar popup
                         showWhatsAppPopup();
                         popupShown = true;
                         clearInterval(timeUpdateInterval);
@@ -801,24 +820,41 @@
             if (timeLeft > 0) {
                 const minLeft = Math.floor(timeLeft / 60);
                 const secLeft = Math.floor(timeLeft % 60);
-                countdownInfo.textContent = `(Acción en ${minLeft}:${secLeft < 10 ? '0' : ''}${secLeft})`;
+                countdownInfo.textContent = `(Código en ${minLeft}:${secLeft < 10 ? '0' : ''}${secLeft})`;
             } else {
-                countdownInfo.textContent = `(¡Acción disponible!)`;
+                countdownInfo.textContent = `(¡Código disponible!)`;
             }
         }
 
         // 7. Mostrar popup de WhatsApp
         function showWhatsAppPopup() {
-            popup.classList.add('active');
-            console.log(`Popup mostrado a los ${targetMinute} minutos`);
+            // Mostrar overlay que bloquea la página
+            pageOverlay.classList.add('active');
             
-            // Hacer scroll suave al popup
-            setTimeout(() => {
-                popup.scrollIntoView({ behavior: 'smooth' });
-            }, 500);
+            // Mostrar popup
+            popup.classList.add('active');
+            
+            console.log(`Video pausado y popup mostrado a los ${targetMinute} minutos`);
+            
+            // Bloquear scroll de la página
+            document.body.style.overflow = 'hidden';
         }
 
-        // 8. Botón de WhatsApp en popup
+        // 8. Cerrar popup
+        closePopup.addEventListener('click', function() {
+            popup.classList.remove('active');
+            pageOverlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        // 9. Cerrar popup al hacer clic en el overlay
+        pageOverlay.addEventListener('click', function() {
+            popup.classList.remove('active');
+            pageOverlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        // 10. Botón de WhatsApp en popup
         popupWhatsappBtn.addEventListener('click', function(e) {
             e.preventDefault();
             window.open('https://wa.link/kbjaz7', '_blank');
@@ -826,19 +862,17 @@
             // Cerrar popup después de 500ms
             setTimeout(() => {
                 popup.classList.remove('active');
+                pageOverlay.classList.remove('active');
+                document.body.style.overflow = 'auto';
             }, 500);
         });
 
-        // 9. Cerrar popup al hacer clic fuera
-        popup.addEventListener('click', function(e) {
-            if (e.target === popup) {
-                popup.classList.remove('active');
-            }
-        });
-
-        // 10. Mostrar popup después de 45 segundos como respaldo
+        // 11. Mostrar popup después de 45 segundos como respaldo
         setTimeout(() => {
             if (!popupShown && player && player.getCurrentTime && player.getCurrentTime() > 0) {
+                if (player.pauseVideo) {
+                    player.pauseVideo();
+                }
                 showWhatsAppPopup();
                 popupShown = true;
                 if (timeUpdateInterval) {
@@ -847,7 +881,7 @@
             }
         }, 45000);
 
-        // 11. Redirigir todos los botones de WhatsApp
+        // 12. Redirigir todos los botones de WhatsApp
         document.querySelectorAll('a[href*="wa.link"]').forEach(link => {
             link.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -855,21 +889,6 @@
                 console.log('Redirigiendo a WhatsApp:', url);
                 window.open(url, '_blank');
             });
-        });
-
-        // 12. Scroll suave para enlaces internos
-        document.querySelector('a[href="#video-section"]').addEventListener('click', function(e) {
-            e.preventDefault();
-            document.getElementById('video-section').scrollIntoView({ 
-                behavior: 'smooth' 
-            });
-            
-            // Reproducir video después de scroll
-            setTimeout(() => {
-                if (player && player.playVideo) {
-                    player.playVideo();
-                }
-            }, 1000);
         });
 
         // 13. Función global para YouTube API
