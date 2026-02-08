@@ -97,7 +97,7 @@
       box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
     }
 
-    /* Video Hero Section - CORREGIDO */
+    /* Video Hero Section */
     .video-hero {
       margin-top: 80px;
       position: relative;
@@ -123,25 +123,12 @@
 
     .video-overlay {
       position: absolute;
-      top: 0;
+      bottom: 0;
       left: 0;
       right: 0;
-      bottom: 0;
-      background: rgba(0, 0, 0, 0.4);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+      background: linear-gradient(to top, rgba(15, 23, 42, 0.9), transparent);
       padding: 40px;
       color: white;
-      text-align: center;
-      opacity: 1;
-      transition: opacity 0.5s ease;
-    }
-
-    .video-overlay.hidden {
-      opacity: 0;
-      pointer-events: none;
     }
 
     .video-title {
@@ -159,6 +146,10 @@
     }
 
     .play-button {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       width: 80px;
       height: 80px;
       background: rgba(245, 158, 11, 0.9);
@@ -168,7 +159,7 @@
       justify-content: center;
       cursor: pointer;
       transition: all 0.3s ease;
-      margin-bottom: 30px;
+      z-index: 10;
     }
 
     .play-button i {
@@ -179,118 +170,7 @@
 
     .play-button:hover {
       background: var(--accent);
-      transform: scale(1.1);
-    }
-
-    /* Post-Video CTA - NUEVA SECCIÓN */
-    .post-video-cta {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(15, 23, 42, 0.95);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      z-index: 2000;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.8s ease;
-      padding: 20px;
-    }
-
-    .post-video-cta.active {
-      opacity: 1;
-      pointer-events: all;
-    }
-
-    .post-video-content {
-      background: linear-gradient(135deg, var(--secondary), #0f172a);
-      border-radius: 30px;
-      padding: 60px 40px;
-      text-align: center;
-      max-width: 800px;
-      width: 90%;
-      border: 2px solid rgba(245, 158, 11, 0.3);
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
-      animation: fadeInUp 0.8s ease 0.3s both;
-    }
-
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .post-video-title {
-      font-size: 2.5rem;
-      font-weight: 800;
-      margin-bottom: 20px;
-      color: var(--accent);
-    }
-
-    .post-video-text {
-      font-size: 1.2rem;
-      color: var(--text-muted);
-      max-width: 600px;
-      margin: 0 auto 40px;
-    }
-
-    .whatsapp-cta-large {
-      background: linear-gradient(135deg, var(--whatsapp), #128c7e);
-      color: white;
-      border: none;
-      padding: 22px 60px;
-      border-radius: 50px;
-      font-weight: 800;
-      font-size: 1.3rem;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 15px;
-      transition: all 0.3s ease;
-      box-shadow: 0 10px 30px rgba(37, 211, 102, 0.5);
-      text-decoration: none;
-      margin-bottom: 20px;
-    }
-
-    .whatsapp-cta-large:hover {
-      transform: translateY(-5px) scale(1.05);
-      box-shadow: 0 15px 40px rgba(37, 211, 102, 0.6);
-    }
-
-    .cta-subtext {
-      color: var(--text-muted);
-      font-size: 0.9rem;
-      max-width: 500px;
-      margin: 0 auto;
-    }
-
-    .close-cta {
-      position: absolute;
-      top: 30px;
-      right: 30px;
-      background: rgba(255, 255, 255, 0.1);
-      border: none;
-      color: white;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      font-size: 1.5rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .close-cta:hover {
-      background: rgba(255, 255, 255, 0.2);
-      transform: rotate(90deg);
+      transform: translate(-50%, -50%) scale(1.1);
     }
 
     /* Benefits Section */
@@ -343,6 +223,104 @@
     }
 
     .benefit-description {
+      color: var(--text-muted);
+    }
+
+    /* CTA Section */
+    .cta-section {
+      background: linear-gradient(135deg, var(--secondary), #0f172a);
+      border-radius: 30px;
+      padding: 60px 40px;
+      text-align: center;
+      margin-bottom: 80px;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(245, 158, 11, 0.2);
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(245, 158, 11, 0.1), transparent 70%);
+      border-radius: 50%;
+    }
+
+    .cta-title {
+      font-size: 2.2rem;
+      font-weight: 800;
+      margin-bottom: 20px;
+    }
+
+    .cta-text {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      max-width: 700px;
+      margin: 0 auto 40px;
+    }
+
+    .cta-large-button {
+      background: linear-gradient(135deg, var(--whatsapp), #128c7e);
+      color: white;
+      border: none;
+      padding: 20px 50px;
+      border-radius: 50px;
+      font-weight: 800;
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 15px;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+      text-decoration: none;
+    }
+
+    .cta-large-button:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px rgba(37, 211, 102, 0.5);
+    }
+
+    /* Steps Section */
+    .steps {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 80px;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .step {
+      flex: 1;
+      min-width: 250px;
+      text-align: center;
+      padding: 30px 20px;
+    }
+
+    .step-number {
+      width: 60px;
+      height: 60px;
+      background: var(--accent);
+      color: var(--primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin: 0 auto 20px;
+    }
+
+    .step-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+
+    .step-description {
       color: var(--text-muted);
     }
 
@@ -404,7 +382,7 @@
         font-size: 1.8rem;
       }
       
-      .post-video-title {
+      .cta-title {
         font-size: 1.8rem;
       }
       
@@ -412,13 +390,13 @@
         grid-template-columns: 1fr;
       }
       
-      .whatsapp-cta-large {
-        padding: 18px 40px;
-        font-size: 1.1rem;
+      .steps {
+        flex-direction: column;
       }
       
-      .post-video-content {
-        padding: 40px 20px;
+      .cta-large-button {
+        padding: 18px 30px;
+        font-size: 1.1rem;
       }
     }
   </style>
@@ -441,19 +419,19 @@
   <!-- Video Hero Section -->
   <section class="video-hero container">
     <div class="video-container">
-      <!-- Video con fuente directa y formato MP4 -->
-      <video id="hero-video" preload="auto" loop muted playsinline>
+      <video id="hero-video" preload="auto" loop muted playsinline autoplay>
+        <!-- Usando el enlace directo de Google Drive -->
         <source src="https://drive.google.com/uc?export=download&id=1bGoz544pSDrjGQcWHTktdY-7tsEEx7pv" type="video/mp4">
         <source src="assets/video-presentacion.mp4" type="video/mp4">
         Tu navegador no soporta el video. Descarga el sistema <a href="https://wa.link/kbjaz7" target="_blank">aquí</a>.
       </video>
-      <div class="video-overlay" id="video-overlay">
-        <div class="play-button" id="play-button">
-          <i class="fas fa-play"></i>
-        </div>
+      <div class="play-button" id="play-button">
+        <i class="fas fa-play" id="play-icon"></i>
+      </div>
+      <div class="video-overlay">
         <h1 class="video-title">Automatiza Tus Ingresos Con IA</h1>
-        <p class="video-subtitle">Mira cómo funciona el sistema en menos de 60 segundos</p>
-        <a href="#contacto" class="cta-button">
+        <p class="video-subtitle">Sistema probado que genera resultados desde el día 1. Sin experiencia técnica necesaria.</p>
+        <a href="https://wa.link/kbjaz7" target="_blank" class="cta-button">
           <i class="fab fa-whatsapp"></i>
           Obtener Acceso Inmediato
         </a>
@@ -461,25 +439,75 @@
     </div>
   </section>
 
-  <!-- Post-Video CTA (Aparece después del video) -->
-  <div class="post-video-cta" id="post-video-cta">
-    <button class="close-cta" id="close-cta">
-      <i class="fas fa-times"></i>
-    </button>
-    <div class="post-video-content">
-      <h2 class="post-video-title">¡Es Hora de Actuar!</h2>
-      <p class="post-video-text">Ya viste el potencial del sistema. Ahora es el momento de dar el siguiente paso y comenzar a automatizar tus ingresos.</p>
+  <!-- Benefits Section -->
+  <section class="container">
+    <h2 class="section-title">¿Por Qué Este Sistema?</h2>
+    <p class="section-subtitle">Diseñado para resultados rápidos y consistentes</p>
+    
+    <div class="benefits">
+      <div class="benefit-card">
+        <div class="benefit-icon">
+          <i class="fas fa-brain"></i>
+        </div>
+        <h3 class="benefit-title">IA Integrada</h3>
+        <p class="benefit-description">Tecnología de inteligencia artificial que automatiza la creación de contenido y captación de clientes.</p>
+      </div>
       
-      <a href="https://wa.link/kbjaz7" target="_blank" class="whatsapp-cta-large" id="main-whatsapp-button">
-        <i class="fab fa-whatsapp"></i>
-        Contactar por WhatsApp
-      </a>
+      <div class="benefit-card">
+        <div class="benefit-icon">
+          <i class="fas fa-rocket"></i>
+        </div>
+        <h3 class="benefit-title">Resultados Rápidos</h3>
+        <p class="benefit-description">Primeros resultados en menos de 7 días. Sistema probado y optimizado para conversión.</p>
+      </div>
       
-      <p class="cta-subtext">👉 Escribe "QUIERO EL SISTEMA" para recibir acceso inmediato</p>
-      <p class="cta-subtext">⏳ Respuesta en menos de 5 minutos</p>
-      <p class="cta-subtext">🎁 Primeros 10 contactos hoy reciben bonus especial</p>
+      <div class="benefit-card">
+        <div class="benefit-icon">
+          <i class="fas fa-mobile-alt"></i>
+        </div>
+        <h3 class="benefit-title">Desde Tu Celular</h3>
+        <p class="benefit-description">Todo el proceso se gestiona desde tu dispositivo móvil. Sin equipos costosos.</p>
+      </div>
     </div>
-  </div>
+  </section>
+
+  <!-- Steps Section -->
+  <section class="container">
+    <h2 class="section-title">Comienza en 3 Pasos</h2>
+    <p class="section-subtitle">Sistema simplificado para acción inmediata</p>
+    
+    <div class="steps">
+      <div class="step">
+        <div class="step-number">1</div>
+        <h3 class="step-title">Acceso Inmediato</h3>
+        <p class="step-description">Recibe acceso al sistema completo después de contactarnos por WhatsApp.</p>
+      </div>
+      
+      <div class="step">
+        <div class="step-number">2</div>
+        <h3 class="step-title">Configuración Rápida</h3>
+        <p class="step-description">Sigue nuestra guía paso a paso para configurar tu sistema en menos de 1 hora.</p>
+      </div>
+      
+      <div class="step">
+        <div class="step-number">3</div>
+        <h3 class="step-title">Primeros Resultados</h3>
+        <p class="step-description">Comienza a ver resultados desde la primera semana con nuestro método probado.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="container">
+    <div class="cta-section">
+      <h2 class="cta-title">¿Listo Para Automatizar Tus Ingresos?</h2>
+      <p class="cta-text">Únete a cientos de personas que ya están generando ingresos pasivos con nuestro sistema. Acceso inmediato, soporte personalizado y resultados garantizados.</p>
+      <a href="https://wa.link/kbjaz7" target="_blank" class="cta-large-button">
+        <i class="fab fa-whatsapp"></i>
+        Obtener Acceso Ahora
+      </a>
+    </div>
+  </section>
 
   <!-- WhatsApp Float Button -->
   <a href="https://wa.link/kbjaz7" target="_blank" class="whatsapp-float">
@@ -487,131 +515,90 @@
   </a>
 
   <script>
-    // Configuración del video - CORREGIDO
+    // Video Controls
     const video = document.getElementById('hero-video');
     const playButton = document.getElementById('play-button');
-    const videoOverlay = document.getElementById('video-overlay');
-    const postVideoCta = document.getElementById('post-video-cta');
-    const closeCta = document.getElementById('close-cta');
-    const mainWhatsappButton = document.getElementById('main-whatsapp-button');
+    const playIcon = document.getElementById('play-icon');
     
-    // Intentar cargar el video de manera más robusta
-    function setupVideo() {
-      // Fuente alternativa si la primera falla
-      const videoSources = [
-        "https://drive.google.com/uc?export=download&id=1bGoz544pSDrjGQcWHTktdY-7tsEEx7pv",
-        "https://docs.google.com/uc?export=download&id=1bGoz544pSDrjGQcWHTktdY-7tsEEx7pv"
-      ];
+    // Intentar reproducir el video automáticamente
+    document.addEventListener('DOMContentLoaded', function() {
+      // Usar el enlace directo de Google Drive
+      const videoUrl = 'https://drive.google.com/uc?export=download&id=1bGoz544pSDrjGQcWHTktdY-7tsEEx7pv';
       
-      // Intentar con la primera fuente
-      video.src = videoSources[0];
-      video.load();
+      // Asignar la fuente del video
+      video.src = videoUrl;
       
-      // Configurar eventos del video
-      video.addEventListener('loadeddata', function() {
-        console.log('Video cargado correctamente');
-        // Reproducir automáticamente (muted para cumplir con políticas de autoplay)
-        video.muted = true;
-        const playPromise = video.play();
-        
-        if (playPromise !== undefined) {
-          playPromise.then(_ => {
-            console.log('Video reproduciéndose automáticamente');
-            videoOverlay.classList.add('hidden');
-          }).catch(error => {
-            console.log('Autoplay prevenido, mostrando botón de play');
-            video.muted = false; // Permitir sonido cuando el usuario interactúe
-          });
-        }
-      });
+      // Intentar reproducir automáticamente
+      const playPromise = video.play();
       
-      video.addEventListener('error', function(e) {
-        console.log('Error cargando video, intentando con fuente alternativa');
-        // Intentar con la segunda fuente
-        if (video.currentSrc !== videoSources[1]) {
-          video.src = videoSources[1];
-          video.load();
-        } else {
-          // Si ambas fuentes fallan, mostrar mensaje
-          videoOverlay.innerHTML = `
-            <h2 class="video-title">Sistema de Automatización con IA</h2>
-            <p class="video-subtitle">Accede ahora al sistema completo</p>
-            <a href="https://wa.link/kbjaz7" target="_blank" class="cta-button">
-              <i class="fab fa-whatsapp"></i>
-              Obtener Acceso Inmediato
-            </a>
-          `;
-        }
-      });
-      
-      // Mostrar CTA cuando el video termine
-      video.addEventListener('ended', function() {
-        console.log('Video terminado, mostrando CTA');
-        showPostVideoCTA();
-      });
-    }
+      if (playPromise !== undefined) {
+        playPromise.then(_ => {
+          // Video se reproduce automáticamente
+          console.log('Video reproduciéndose automáticamente');
+          playButton.style.display = 'none';
+        }).catch(error => {
+          // Autoplay fue prevenido, mostrar botón de play
+          console.log('Autoplay prevenido, mostrando botón de play');
+          playButton.style.display = 'flex';
+          video.muted = false; // Permitir sonido cuando el usuario interactúe
+        });
+      }
+    });
     
     // Control del botón de play
     playButton.addEventListener('click', function() {
       if (video.paused) {
         video.play();
         video.muted = false; // Activar sonido cuando el usuario interactúa
-        videoOverlay.classList.add('hidden');
-        playButton.innerHTML = '<i class="fas fa-pause"></i>';
+        playIcon.className = 'fas fa-pause';
       } else {
         video.pause();
-        playButton.innerHTML = '<i class="fas fa-play"></i>';
+        playIcon.className = 'fas fa-play';
       }
     });
     
-    // Mostrar el CTA después del video
-    function showPostVideoCTA() {
-      postVideoCta.classList.add('active');
-      // Desplazar al usuario suavemente hacia el CTA
-      setTimeout(() => {
-        postVideoCta.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }, 500);
-      
-      // Trackear la visualización del CTA
-      console.log('CTA mostrado después del video');
-    }
-    
-    // Cerrar el CTA
-    closeCta.addEventListener('click', function() {
-      postVideoCta.classList.remove('active');
+    // Cambiar icono cuando el video se pausa
+    video.addEventListener('pause', function() {
+      playIcon.className = 'fas fa-play';
+      playButton.style.display = 'flex';
     });
     
-    // Cerrar CTA al hacer clic fuera del contenido
-    postVideoCta.addEventListener('click', function(e) {
-      if (e.target === postVideoCta) {
-        postVideoCta.classList.remove('active');
-      }
+    // Cambiar icono cuando el video se reproduce
+    video.addEventListener('play', function() {
+      playIcon.className = 'fas fa-pause';
+      playButton.style.display = 'flex';
     });
     
-    // Configurar el botón principal de WhatsApp
-    mainWhatsappButton.addEventListener('click', function() {
-      // Trackear clic en el botón principal
-      console.log('Botón principal de WhatsApp clickeado');
-      
-      // Redirigir después de un pequeño delay para la animación
-      setTimeout(() => {
-        window.open('https://wa.link/kbjaz7', '_blank');
-      }, 300);
+    // Ocultar botón de play cuando el video se está reproduciendo
+    video.addEventListener('playing', function() {
+      playButton.style.opacity = '0.5';
     });
     
-    // Mostrar CTA automáticamente después de 45 segundos (si el video no se reproduce)
-    setTimeout(() => {
-      if (!postVideoCta.classList.contains('active')) {
-        showPostVideoCTA();
-      }
-    }, 45000);
+    // Mostrar botón de play cuando el video está pausado
+    video.addEventListener('pause', function() {
+      playButton.style.opacity = '1';
+    });
     
-    // Inicializar el video cuando la página cargue
-    document.addEventListener('DOMContentLoaded', setupVideo);
+    // Manejar errores del video
+    video.addEventListener('error', function(e) {
+      console.error('Error del video:', e);
+      // Mostrar mensaje de error y botón de WhatsApp
+      const videoContainer = document.querySelector('.video-container');
+      videoContainer.innerHTML = `
+        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; padding: 40px; text-align: center;">
+          <h2 style="font-size: 2rem; margin-bottom: 20px; color: var(--accent);">Sistema de Automatización con IA</h2>
+          <p style="font-size: 1.2rem; margin-bottom: 30px; color: var(--text-muted);">Accede ahora al sistema completo que transformará tus ingresos</p>
+          <a href="https://wa.link/kbjaz7" target="_blank" class="cta-button" style="font-size: 1.2rem; padding: 15px 30px;">
+            <i class="fab fa-whatsapp"></i>
+            Obtener Acceso Inmediato
+          </a>
+        </div>
+      `;
+    });
     
     // Animar elementos al hacer scroll
     const animateOnScroll = () => {
-      const elements = document.querySelectorAll('.benefit-card');
+      const elements = document.querySelectorAll('.benefit-card, .step');
       
       elements.forEach(element => {
         const elementPosition = element.getBoundingClientRect().top;
@@ -625,7 +612,7 @@
     };
     
     // Set initial state for animation
-    document.querySelectorAll('.benefit-card').forEach(el => {
+    document.querySelectorAll('.benefit-card, .step').forEach(el => {
       el.style.opacity = '0';
       el.style.transform = 'translateY(20px)';
       el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
@@ -633,6 +620,13 @@
     
     window.addEventListener('scroll', animateOnScroll);
     window.addEventListener('load', animateOnScroll);
+    
+    // WhatsApp click tracking
+    document.querySelectorAll('a[href*="wa.link"]').forEach(link => {
+      link.addEventListener('click', function() {
+        console.log('WhatsApp link clicked: ' + this.href);
+      });
+    });
   </script>
 </body>
 </html>
