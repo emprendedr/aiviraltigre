@@ -97,7 +97,7 @@
       box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
     }
 
-    /* Video Hero Section */
+    /* Video Hero Section con YouTube */
     .video-hero {
       margin-top: 80px;
       position: relative;
@@ -115,20 +115,25 @@
       background: #000;
     }
 
-    #hero-video {
+    .youtube-video {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      border: none;
     }
 
     .video-overlay {
       position: absolute;
-      bottom: 0;
+      top: 0;
       left: 0;
       right: 0;
-      background: linear-gradient(to top, rgba(15, 23, 42, 0.9), transparent);
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.3);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
       padding: 40px;
       color: white;
+      z-index: 2;
     }
 
     .video-title {
@@ -145,32 +150,124 @@
       margin-bottom: 30px;
     }
 
-    .play-button {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 80px;
-      height: 80px;
-      background: rgba(245, 158, 11, 0.9);
-      border-radius: 50%;
+    /* WhatsApp Popup */
+    .whatsapp-popup {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(15, 23, 42, 0.95);
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
+      z-index: 2000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.8s ease;
+      padding: 20px;
+    }
+
+    .whatsapp-popup.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .popup-content {
+      background: linear-gradient(135deg, var(--secondary), #0f172a);
+      border-radius: 30px;
+      padding: 60px 40px;
+      text-align: center;
+      max-width: 800px;
+      width: 90%;
+      border: 2px solid rgba(245, 158, 11, 0.3);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+      position: relative;
+      animation: popupAppear 0.8s ease 0.3s both;
+    }
+
+    @keyframes popupAppear {
+      from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .popup-icon {
+      font-size: 4rem;
+      color: var(--whatsapp);
+      margin-bottom: 20px;
+      animation: pulse 2s infinite;
+    }
+
+    .popup-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 20px;
+      color: var(--accent);
+    }
+
+    .popup-text {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto 40px;
+      line-height: 1.8;
+    }
+
+    .popup-cta {
+      background: linear-gradient(135deg, var(--whatsapp), #128c7e);
+      color: white;
+      border: none;
+      padding: 22px 60px;
+      border-radius: 50px;
+      font-weight: 800;
+      font-size: 1.3rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 15px;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 30px rgba(37, 211, 102, 0.5);
+      text-decoration: none;
+      margin-bottom: 20px;
+    }
+
+    .popup-cta:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 15px 40px rgba(37, 211, 102, 0.6);
+    }
+
+    .popup-subtext {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      max-width: 500px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .popup-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      color: white;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      font-size: 1.2rem;
       cursor: pointer;
       transition: all 0.3s ease;
-      z-index: 10;
     }
 
-    .play-button i {
-      font-size: 2rem;
-      color: white;
-      margin-left: 5px;
-    }
-
-    .play-button:hover {
-      background: var(--accent);
-      transform: translate(-50%, -50%) scale(1.1);
+    .popup-close:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: rotate(90deg);
     }
 
     /* Benefits Section */
@@ -284,46 +381,6 @@
       box-shadow: 0 12px 30px rgba(37, 211, 102, 0.5);
     }
 
-    /* Steps Section */
-    .steps {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 80px;
-      flex-wrap: wrap;
-      gap: 20px;
-    }
-
-    .step {
-      flex: 1;
-      min-width: 250px;
-      text-align: center;
-      padding: 30px 20px;
-    }
-
-    .step-number {
-      width: 60px;
-      height: 60px;
-      background: var(--accent);
-      color: var(--primary);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      font-weight: 800;
-      margin: 0 auto 20px;
-    }
-
-    .step-title {
-      font-size: 1.3rem;
-      font-weight: 700;
-      margin-bottom: 15px;
-    }
-
-    .step-description {
-      color: var(--text-muted);
-    }
-
     /* WhatsApp Float Button */
     .whatsapp-float {
       position: fixed;
@@ -390,12 +447,16 @@
         grid-template-columns: 1fr;
       }
       
-      .steps {
-        flex-direction: column;
+      .popup-title {
+        font-size: 1.8rem;
       }
       
-      .cta-large-button {
-        padding: 18px 30px;
+      .popup-content {
+        padding: 40px 20px;
+      }
+      
+      .popup-cta {
+        padding: 18px 40px;
         font-size: 1.1rem;
       }
     }
@@ -416,28 +477,60 @@
     </div>
   </header>
 
-  <!-- Video Hero Section -->
+  <!-- Video Hero Section con YouTube -->
   <section class="video-hero container">
     <div class="video-container">
-      <video id="hero-video" preload="auto" loop muted playsinline autoplay>
-        <!-- Usando el enlace directo de Google Drive -->
-        <source src="https://drive.google.com/uc?export=download&id=1bGoz544pSDrjGQcWHTktdY-7tsEEx7pv" type="video/mp4">
-        <source src="assets/video-presentacion.mp4" type="video/mp4">
-        Tu navegador no soporta el video. Descarga el sistema <a href="https://wa.link/kbjaz7" target="_blank">aquí</a>.
-      </video>
-      <div class="play-button" id="play-button">
-        <i class="fas fa-play" id="play-icon"></i>
-      </div>
+      <!-- Video de YouTube -->
+      <iframe 
+        class="youtube-video"
+        id="youtube-player"
+        src="https://www.youtube.com/embed/2bWD3uLcwss?si=whnEjFex6eUbFVtD&autoplay=1&mute=1&controls=1&modestbranding=1&rel=0&enablejsapi=1"
+        title="Sistema de Automatización de Ingresos"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+      
       <div class="video-overlay">
         <h1 class="video-title">Automatiza Tus Ingresos Con IA</h1>
         <p class="video-subtitle">Sistema probado que genera resultados desde el día 1. Sin experiencia técnica necesaria.</p>
-        <a href="https://wa.link/kbjaz7" target="_blank" class="cta-button">
+        <a href="#contacto" class="cta-button">
           <i class="fab fa-whatsapp"></i>
           Obtener Acceso Inmediato
         </a>
       </div>
     </div>
   </section>
+
+  <!-- WhatsApp Popup (aparece antes de que termine el video) -->
+  <div class="whatsapp-popup" id="whatsapp-popup">
+    <div class="popup-content">
+      <button class="popup-close" id="popup-close">
+        <i class="fas fa-times"></i>
+      </button>
+      
+      <div class="popup-icon">
+        <i class="fab fa-whatsapp"></i>
+      </div>
+      
+      <h2 class="popup-title">¡No te quedes sin tu lugar!</h2>
+      
+      <p class="popup-text">
+        Ya viste lo que el sistema puede hacer por ti. <strong>Los primeros 10 que contacten hoy recibirán acceso VIP con bonus exclusivo.</strong> No dejes pasar esta oportunidad.
+      </p>
+      
+      <a href="https://wa.link/kbjaz7" target="_blank" class="popup-cta" id="popup-whatsapp-button">
+        <i class="fab fa-whatsapp"></i>
+        Contactar por WhatsApp AHORA
+      </a>
+      
+      <div class="popup-subtext">
+        <p>👉 Escribe <strong>"SISTEMA VIP"</strong> para recibir acceso inmediato + bonus</p>
+        <p>⏳ Oferta válida solo por hoy</p>
+        <p>🎯 Respuesta en menos de 3 minutos</p>
+      </div>
+    </div>
+  </div>
 
   <!-- Benefits Section -->
   <section class="container">
@@ -471,32 +564,6 @@
     </div>
   </section>
 
-  <!-- Steps Section -->
-  <section class="container">
-    <h2 class="section-title">Comienza en 3 Pasos</h2>
-    <p class="section-subtitle">Sistema simplificado para acción inmediata</p>
-    
-    <div class="steps">
-      <div class="step">
-        <div class="step-number">1</div>
-        <h3 class="step-title">Acceso Inmediato</h3>
-        <p class="step-description">Recibe acceso al sistema completo después de contactarnos por WhatsApp.</p>
-      </div>
-      
-      <div class="step">
-        <div class="step-number">2</div>
-        <h3 class="step-title">Configuración Rápida</h3>
-        <p class="step-description">Sigue nuestra guía paso a paso para configurar tu sistema en menos de 1 hora.</p>
-      </div>
-      
-      <div class="step">
-        <div class="step-number">3</div>
-        <h3 class="step-title">Primeros Resultados</h3>
-        <p class="step-description">Comienza a ver resultados desde la primera semana con nuestro método probado.</p>
-      </div>
-    </div>
-  </section>
-
   <!-- CTA Section -->
   <section class="container">
     <div class="cta-section">
@@ -515,118 +582,172 @@
   </a>
 
   <script>
-    // Video Controls
-    const video = document.getElementById('hero-video');
-    const playButton = document.getElementById('play-button');
-    const playIcon = document.getElementById('play-icon');
+    // Variables globales
+    let player;
+    let popupShown = false;
+    let videoDuration = 0;
+    let checkInterval;
     
-    // Intentar reproducir el video automáticamente
-    document.addEventListener('DOMContentLoaded', function() {
-      // Usar el enlace directo de Google Drive
-      const videoUrl = 'https://drive.google.com/uc?export=download&id=1bGoz544pSDrjGQcWHTktdY-7tsEEx7pv';
-      
-      // Asignar la fuente del video
-      video.src = videoUrl;
-      
-      // Intentar reproducir automáticamente
-      const playPromise = video.play();
-      
-      if (playPromise !== undefined) {
-        playPromise.then(_ => {
-          // Video se reproduce automáticamente
-          console.log('Video reproduciéndose automáticamente');
-          playButton.style.display = 'none';
-        }).catch(error => {
-          // Autoplay fue prevenido, mostrar botón de play
-          console.log('Autoplay prevenido, mostrando botón de play');
-          playButton.style.display = 'flex';
-          video.muted = false; // Permitir sonido cuando el usuario interactúe
-        });
-      }
-    });
+    // Cargar API de YouTube
+    function loadYouTubeAPI() {
+      const tag = document.createElement('script');
+      tag.src = "https://www.youtube.com/iframe_api";
+      const firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    }
     
-    // Control del botón de play
-    playButton.addEventListener('click', function() {
-      if (video.paused) {
-        video.play();
-        video.muted = false; // Activar sonido cuando el usuario interactúa
-        playIcon.className = 'fas fa-pause';
-      } else {
-        video.pause();
-        playIcon.className = 'fas fa-play';
-      }
-    });
-    
-    // Cambiar icono cuando el video se pausa
-    video.addEventListener('pause', function() {
-      playIcon.className = 'fas fa-play';
-      playButton.style.display = 'flex';
-    });
-    
-    // Cambiar icono cuando el video se reproduce
-    video.addEventListener('play', function() {
-      playIcon.className = 'fas fa-pause';
-      playButton.style.display = 'flex';
-    });
-    
-    // Ocultar botón de play cuando el video se está reproduciendo
-    video.addEventListener('playing', function() {
-      playButton.style.opacity = '0.5';
-    });
-    
-    // Mostrar botón de play cuando el video está pausado
-    video.addEventListener('pause', function() {
-      playButton.style.opacity = '1';
-    });
-    
-    // Manejar errores del video
-    video.addEventListener('error', function(e) {
-      console.error('Error del video:', e);
-      // Mostrar mensaje de error y botón de WhatsApp
-      const videoContainer = document.querySelector('.video-container');
-      videoContainer.innerHTML = `
-        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; padding: 40px; text-align: center;">
-          <h2 style="font-size: 2rem; margin-bottom: 20px; color: var(--accent);">Sistema de Automatización con IA</h2>
-          <p style="font-size: 1.2rem; margin-bottom: 30px; color: var(--text-muted);">Accede ahora al sistema completo que transformará tus ingresos</p>
-          <a href="https://wa.link/kbjaz7" target="_blank" class="cta-button" style="font-size: 1.2rem; padding: 15px 30px;">
-            <i class="fab fa-whatsapp"></i>
-            Obtener Acceso Inmediato
-          </a>
-        </div>
-      `;
-    });
-    
-    // Animar elementos al hacer scroll
-    const animateOnScroll = () => {
-      const elements = document.querySelectorAll('.benefit-card, .step');
-      
-      elements.forEach(element => {
-        const elementPosition = element.getBoundingClientRect().top;
-        const screenPosition = window.innerHeight / 1.2;
-        
-        if (elementPosition < screenPosition) {
-          element.style.opacity = '1';
-          element.style.transform = 'translateY(0)';
+    // Inicializar reproductor de YouTube
+    function onYouTubeIframeAPIReady() {
+      player = new YT.Player('youtube-player', {
+        events: {
+          'onReady': onPlayerReady,
+          'onStateChange': onPlayerStateChange
         }
       });
-    };
+    }
     
-    // Set initial state for animation
-    document.querySelectorAll('.benefit-card, .step').forEach(el => {
-      el.style.opacity = '0';
-      el.style.transform = 'translateY(20px)';
-      el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    // Cuando el reproductor está listo
+    function onPlayerReady(event) {
+      console.log('Reproductor de YouTube listo');
+      videoDuration = player.getDuration();
+      console.log('Duración del video:', videoDuration, 'segundos');
+    }
+    
+    // Controlar cambios de estado del video
+    function onPlayerStateChange(event) {
+      // Estado 1: Reproduciendo
+      if (event.data === YT.PlayerState.PLAYING) {
+        console.log('Video reproduciéndose');
+        
+        // Iniciar intervalo para verificar el tiempo
+        checkInterval = setInterval(checkVideoProgress, 1000);
+      }
+      
+      // Estado 2: Pausado
+      if (event.data === YT.PlayerState.PAUSED) {
+        console.log('Video pausado');
+        clearInterval(checkInterval);
+      }
+      
+      // Estado 0: Terminado
+      if (event.data === YT.PlayerState.ENDED) {
+        console.log('Video terminado');
+        clearInterval(checkInterval);
+        
+        // Mostrar popup si no se ha mostrado antes
+        if (!popupShown) {
+          showWhatsAppPopup();
+        }
+      }
+    }
+    
+    // Verificar progreso del video
+    function checkVideoProgress() {
+      if (player && player.getCurrentTime) {
+        const currentTime = player.getCurrentTime();
+        
+        // Mostrar popup cuando queden 15 segundos para terminar (o al 90% del video)
+        if (videoDuration > 0 && currentTime >= (videoDuration - 15) && !popupShown) {
+          showWhatsAppPopup();
+          clearInterval(checkInterval);
+        }
+      }
+    }
+    
+    // Mostrar popup de WhatsApp
+    function showWhatsAppPopup() {
+      popupShown = true;
+      const popup = document.getElementById('whatsapp-popup');
+      popup.classList.add('active');
+      
+      // Pausar el video cuando aparece el popup
+      if (player && player.pauseVideo) {
+        player.pauseVideo();
+      }
+      
+      // Trackear la visualización del popup
+      console.log('Popup de WhatsApp mostrado');
+    }
+    
+    // Cerrar popup
+    document.getElementById('popup-close').addEventListener('click', function() {
+      const popup = document.getElementById('whatsapp-popup');
+      popup.classList.remove('active');
+      
+      // Reanudar el video si estaba reproduciéndose
+      if (player && player.playVideo) {
+        player.playVideo();
+      }
     });
     
-    window.addEventListener('scroll', animateOnScroll);
-    window.addEventListener('load', animateOnScroll);
+    // Cerrar popup al hacer clic fuera del contenido
+    document.getElementById('whatsapp-popup').addEventListener('click', function(e) {
+      if (e.target === this) {
+        this.classList.remove('active');
+        
+        // Reanudar el video si estaba reproduciéndose
+        if (player && player.playVideo) {
+          player.playVideo();
+        }
+      }
+    });
     
-    // WhatsApp click tracking
-    document.querySelectorAll('a[href*="wa.link"]').forEach(link => {
-      link.addEventListener('click', function() {
-        console.log('WhatsApp link clicked: ' + this.href);
+    // Configurar el botón de WhatsApp del popup
+    document.getElementById('popup-whatsapp-button').addEventListener('click', function() {
+      console.log('Botón de WhatsApp del popup clickeado');
+      // Redirigir después de un pequeño delay para la animación
+      setTimeout(() => {
+        window.open('https://wa.link/kbjaz7', '_blank');
+      }, 300);
+    });
+    
+    // Mostrar popup automáticamente después de 45 segundos (por si falla la detección del tiempo)
+    setTimeout(() => {
+      if (!popupShown) {
+        showWhatsAppPopup();
+      }
+    }, 45000);
+    
+    // Inicializar cuando la página cargue
+    document.addEventListener('DOMContentLoaded', function() {
+      // Cargar API de YouTube
+      loadYouTubeAPI();
+      
+      // Animar elementos al hacer scroll
+      const animateOnScroll = () => {
+        const elements = document.querySelectorAll('.benefit-card');
+        
+        elements.forEach(element => {
+          const elementPosition = element.getBoundingClientRect().top;
+          const screenPosition = window.innerHeight / 1.2;
+          
+          if (elementPosition < screenPosition) {
+            element.style.opacity = '1';
+            element.style.transform = 'translateY(0)';
+          }
+        });
+      };
+      
+      // Set initial state for animation
+      document.querySelectorAll('.benefit-card').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+      });
+      
+      window.addEventListener('scroll', animateOnScroll);
+      window.addEventListener('load', animateOnScroll);
+      
+      // WhatsApp click tracking
+      document.querySelectorAll('a[href*="wa.link"]').forEach(link => {
+        link.addEventListener('click', function() {
+          console.log('WhatsApp link clicked: ' + this.href);
+        });
       });
     });
+    
+    // Función global necesaria para YouTube API
+    window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
   </script>
 </body>
 </html>
