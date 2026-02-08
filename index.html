@@ -85,6 +85,7 @@
       align-items: center;
       text-align: center;
       padding: 20px;
+      margin-top: 0;
     }
 
     .thumbnail-content {
@@ -115,31 +116,58 @@
       line-height: 1.6;
     }
 
-    .play-button-container {
-      margin-bottom: 40px;
+    .thumbnail-image {
+      width: 100%;
+      max-width: 900px;
+      height: 500px;
+      background-image: url('https://img.youtube.com/vi/2bWD3uLcwss/maxresdefault.jpg');
+      background-size: cover;
+      background-position: center;
+      border-radius: 20px;
+      margin: 0 auto 40px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+      cursor: pointer;
+    }
+
+    .thumbnail-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s ease;
+    }
+
+    .thumbnail-overlay:hover {
+      background: rgba(0, 0, 0, 0.2);
     }
 
     .play-button {
-      width: 120px;
-      height: 120px;
+      width: 100px;
+      height: 100px;
       background: rgba(245, 158, 11, 0.9);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 3rem;
+      font-size: 2.5rem;
       color: white;
       cursor: pointer;
       transition: all 0.3s ease;
       border: 4px solid rgba(255, 255, 255, 0.8);
       box-shadow: 0 10px 30px rgba(245, 158, 11, 0.4);
       animation: pulse 2s infinite;
-      margin: 0 auto;
     }
 
     @keyframes pulse {
       0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7); }
-      70% { transform: scale(1.1); box-shadow: 0 0 0 25px rgba(245, 158, 11, 0); }
+      70% { transform: scale(1.1); box-shadow: 0 0 0 20px rgba(245, 158, 11, 0); }
       100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
     }
 
@@ -155,51 +183,31 @@
       font-weight: 600;
     }
 
-    /* Video Container (oculto inicialmente) */
+    /* Video Container */
     .video-container {
       width: 100%;
       height: 100vh;
-      position: fixed;
-      top: 0;
-      left: 0;
+      position: relative;
       background: #000;
-      z-index: 100;
       display: none;
-      opacity: 0;
-      transition: opacity 0.5s ease;
     }
 
     .video-container.active {
       display: block;
-      opacity: 1;
     }
 
-    #main-video {
+    #youtube-player {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      border: none;
     }
 
-    /* Video Controls */
-    .video-controls {
-      position: fixed;
-      bottom: 40px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 20px;
-      z-index: 101;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    .video-controls.visible {
-      opacity: 1;
-    }
-
-    .control-btn {
-      width: 60px;
-      height: 60px;
+    .close-video {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 50px;
+      height: 50px;
       background: rgba(0, 0, 0, 0.7);
       border-radius: 50%;
       display: flex;
@@ -208,13 +216,14 @@
       font-size: 1.5rem;
       color: white;
       cursor: pointer;
+      z-index: 101;
       border: 2px solid rgba(255, 255, 255, 0.3);
       transition: all 0.3s ease;
     }
 
-    .control-btn:hover {
+    .close-video:hover {
       background: rgba(245, 158, 11, 0.9);
-      transform: scale(1.1);
+      transform: rotate(90deg);
     }
 
     /* WhatsApp Overlay */
@@ -435,31 +444,6 @@
       transform: scale(1.1);
     }
 
-    /* Close Button for Video */
-    .close-video {
-      position: fixed;
-      top: 30px;
-      right: 30px;
-      width: 50px;
-      height: 50px;
-      background: rgba(0, 0, 0, 0.7);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      color: white;
-      cursor: pointer;
-      z-index: 101;
-      border: 2px solid rgba(255, 255, 255, 0.3);
-      transition: all 0.3s ease;
-    }
-
-    .close-video:hover {
-      background: rgba(245, 158, 11, 0.9);
-      transform: rotate(90deg);
-    }
-
     /* Responsive */
     @media (max-width: 768px) {
       header {
@@ -483,10 +467,14 @@
         font-size: 1.2rem;
       }
       
+      .thumbnail-image {
+        height: 300px;
+      }
+      
       .play-button {
-        width: 100px;
-        height: 100px;
-        font-size: 2.5rem;
+        width: 80px;
+        height: 80px;
+        font-size: 2rem;
       }
       
       .whatsapp-content {
@@ -539,15 +527,9 @@
         font-size: 1.1rem;
       }
       
-      .control-btn {
-        width: 50px;
-        height: 50px;
-        font-size: 1.3rem;
-      }
-      
       .close-video {
-        top: 20px;
-        right: 20px;
+        top: 15px;
+        right: 15px;
         width: 40px;
         height: 40px;
         font-size: 1.2rem;
@@ -564,7 +546,7 @@
     </a>
   </header>
 
-  <!-- Thumbnail (visible inicialmente) -->
+  <!-- Thumbnail Container -->
   <section class="thumbnail-container" id="thumbnail-container">
     <div class="thumbnail-content">
       <h1 class="thumbnail-title">
@@ -575,12 +557,15 @@
         Sin experiencia técnica, 100% desde tu celular.
       </p>
       
-      <div class="play-button-container">
-        <div class="play-button" id="play-button">
-          <i class="fas fa-play"></i>
+      <div class="thumbnail-image" id="thumbnail-image">
+        <div class="thumbnail-overlay">
+          <div class="play-button" id="play-button">
+            <i class="fas fa-play"></i>
+          </div>
         </div>
-        <p class="watch-text">Haz clic para ver el video explicativo</p>
       </div>
+      
+      <p class="watch-text">Haz clic en la imagen para ver el video explicativo</p>
       
       <a href="https://wa.link/kbjaz7" target="_blank" class="whatsapp-btn" style="font-size: 1.1rem; padding: 18px 40px;">
         <i class="fab fa-whatsapp"></i>
@@ -589,32 +574,13 @@
     </div>
   </section>
 
-  <!-- Video Container (oculto inicialmente) -->
+  <!-- Video Container -->
   <div class="video-container" id="video-container">
     <div class="close-video" id="close-video">
       <i class="fas fa-times"></i>
     </div>
-    
-    <!-- Video Element -->
-    <video id="main-video" preload="metadata" playsinline>
-      <source src="https://drive.google.com/uc?export=download&id=1bGoz544pSDrjGQcWHTktdY-7tsEEx7pv" type="video/mp4">
-      <!-- Fuente alternativa -->
-      <source src="assets/video-presentacion.mp4" type="video/mp4">
-      Tu navegador no soporta videos.
-    </video>
-  </div>
-
-  <!-- Video Controls -->
-  <div class="video-controls" id="video-controls">
-    <div class="control-btn" id="play-pause-btn">
-      <i class="fas fa-pause"></i>
-    </div>
-    <div class="control-btn" id="sound-btn">
-      <i class="fas fa-volume-up"></i>
-    </div>
-    <div class="control-btn" id="replay-btn">
-      <i class="fas fa-redo"></i>
-    </div>
+    <!-- YouTube Player -->
+    <div id="youtube-player"></div>
   </div>
 
   <!-- WhatsApp Overlay -->
@@ -702,299 +668,187 @@
 
   <script>
     // Variables globales
-    const video = document.getElementById('main-video');
-    const playButton = document.getElementById('play-button');
-    const thumbnailContainer = document.getElementById('thumbnail-container');
-    const videoContainer = document.getElementById('video-container');
-    const closeVideo = document.getElementById('close-video');
-    const videoControls = document.getElementById('video-controls');
-    const playPauseBtn = document.getElementById('play-pause-btn');
-    const soundBtn = document.getElementById('sound-btn');
-    const replayBtn = document.getElementById('replay-btn');
-    const whatsappOverlay = document.getElementById('whatsapp-overlay');
-    const whatsappRedirectBtn = document.getElementById('whatsapp-redirect-btn');
-    
+    let player;
     let videoDuration = 0;
     let timeUpdateInterval;
     let overlayShown = false;
-    let isPlaying = false;
-    let isMuted = false;
-    let controlsTimeout;
+    
+    const thumbnailContainer = document.getElementById('thumbnail-container');
+    const videoContainer = document.getElementById('video-container');
+    const playButton = document.getElementById('play-button');
+    const thumbnailImage = document.getElementById('thumbnail-image');
+    const closeVideo = document.getElementById('close-video');
+    const whatsappOverlay = document.getElementById('whatsapp-overlay');
+    const whatsappRedirectBtn = document.getElementById('whatsapp-redirect-btn');
 
-    // Configurar video
-    video.muted = false; // Sonido activado por defecto
-    video.volume = 0.8; // Volumen al 80%
+    // 1. Cargar la API de YouTube
+    const tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    const firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-    // 1. MOSTRAR THUMBNAIL AL CARGAR
-    document.addEventListener('DOMContentLoaded', function() {
-      // Thumbnail ya está visible
-      console.log('Thumbnail visible - listo para reproducir');
-    });
+    // 2. Función para crear el reproductor
+    function onYouTubeIframeAPIReady() {
+      // El reproductor se creará cuando el usuario haga clic en el thumbnail
+      console.log('API de YouTube lista');
+    }
 
-    // 2. BOTÓN DE REPRODUCCIÓN
+    // 3. Crear reproductor al hacer clic en el thumbnail
+    function createYouTubePlayer() {
+      player = new YT.Player('youtube-player', {
+        videoId: '2bWD3uLcwss',
+        playerVars: {
+          'autoplay': 1,
+          'mute': 0, // Con sonido
+          'controls': 1,
+          'showinfo': 0,
+          'rel': 0,
+          'modestbranding': 1,
+          'enablejsapi': 1
+        },
+        events: {
+          'onReady': onPlayerReady,
+          'onStateChange': onPlayerStateChange
+        }
+      });
+    }
+
+    // 4. Cuando el reproductor está listo
+    function onPlayerReady(event) {
+      console.log('Reproductor de YouTube listo');
+      videoDuration = player.getDuration();
+      console.log('Duración del video:', videoDuration);
+      
+      // Iniciar seguimiento del tiempo
+      startTimeTracking();
+    }
+
+    // 5. Manejar cambios de estado del video
+    function onPlayerStateChange(event) {
+      // Estado 1: Reproduciendo
+      if (event.data === YT.PlayerState.PLAYING) {
+        console.log('Video reproduciéndose');
+      }
+      
+      // Estado 2: Pausado
+      if (event.data === YT.PlayerState.PAUSED) {
+        console.log('Video pausado');
+        if (timeUpdateInterval) {
+          clearInterval(timeUpdateInterval);
+        }
+      }
+      
+      // Estado 0: Terminado
+      if (event.data === YT.PlayerState.ENDED) {
+        console.log('Video terminado');
+        if (timeUpdateInterval) {
+          clearInterval(timeUpdateInterval);
+        }
+        
+        // Mostrar overlay si no se ha mostrado
+        if (!overlayShown) {
+          showWhatsAppOverlay();
+        }
+      }
+    }
+
+    // 6. Seguimiento del tiempo
+    function startTimeTracking() {
+      timeUpdateInterval = setInterval(() => {
+        if (player && player.getCurrentTime) {
+          const currentTime = player.getCurrentTime();
+          const remainingTime = videoDuration - currentTime;
+          
+          // Mostrar overlay 3 segundos antes del final
+          if (remainingTime <= 3 && !overlayShown) {
+            showWhatsAppOverlay();
+            overlayShown = true;
+            clearInterval(timeUpdateInterval);
+          }
+        }
+      }, 1000); // Verificar cada segundo
+    }
+
+    // 7. Mostrar overlay de WhatsApp
+    function showWhatsAppOverlay() {
+      whatsappOverlay.classList.add('active');
+      console.log('Overlay de WhatsApp mostrado 3 segundos antes del final');
+    }
+
+    // 8. Evento para reproducir video
     playButton.addEventListener('click', function() {
       startVideoPlayback();
     });
 
-    // 3. FUNCIÓN PARA INICIAR REPRODUCCIÓN
+    // También permitir hacer clic en toda la imagen
+    thumbnailImage.addEventListener('click', function() {
+      startVideoPlayback();
+    });
+
+    // 9. Función para iniciar reproducción
     function startVideoPlayback() {
-      console.log('Iniciando reproducción...');
-      
       // Ocultar thumbnail
       thumbnailContainer.style.display = 'none';
       
       // Mostrar contenedor de video
       videoContainer.classList.add('active');
       
-      // Intentar reproducir
-      const playPromise = video.play();
+      // Crear reproductor de YouTube
+      createYouTubePlayer();
       
-      if (playPromise !== undefined) {
-        playPromise.then(() => {
-          console.log('Video reproduciéndose');
-          isPlaying = true;
-          updatePlayPauseIcon();
-          showControls();
-          startTimeTracking();
-          
-          // Hacer scroll al inicio para asegurar que el video sea visible
-          window.scrollTo(0, 0);
-        }).catch(error => {
-          console.log('Error al reproducir:', error);
-          // Mostrar controles y mensaje
-          showControls();
-          alert('Haz clic en el botón de play para comenzar el video');
-        });
-      }
+      // Hacer scroll al inicio
+      window.scrollTo(0, 0);
     }
 
-    // 4. CONTROLES DE VIDEO
-    // Botón de play/pause
-    playPauseBtn.addEventListener('click', function() {
-      if (isPlaying) {
-        video.pause();
-        isPlaying = false;
-      } else {
-        video.play();
-        isPlaying = true;
-      }
-      updatePlayPauseIcon();
-      showControls();
-    });
-
-    // Botón de sonido
-    soundBtn.addEventListener('click', function() {
-      if (isMuted) {
-        video.muted = false;
-        isMuted = false;
-        soundBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
-      } else {
-        video.muted = true;
-        isMuted = true;
-        soundBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
-      }
-      showControls();
-    });
-
-    // Botón de reinicio
-    replayBtn.addEventListener('click', function() {
-      video.currentTime = 0;
-      video.play();
-      isPlaying = true;
-      updatePlayPauseIcon();
-      showControls();
-      
-      // Ocultar overlay de WhatsApp si está visible
-      if (overlayShown) {
-        whatsappOverlay.classList.remove('active');
-        overlayShown = false;
-      }
-    });
-
-    // 5. ACTUALIZAR ICONOS
-    function updatePlayPauseIcon() {
-      if (isPlaying) {
-        playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
-      } else {
-        playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
-      }
-    }
-
-    // Actualizar icono de sonido
-    video.addEventListener('volumechange', function() {
-      if (video.muted) {
-        soundBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
-        isMuted = true;
-      } else {
-        soundBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
-        isMuted = false;
-      }
-    });
-
-    // 6. SEGUIMIENTO DEL TIEMPO
-    function startTimeTracking() {
-      // Obtener duración cuando esté disponible
-      const checkDuration = setInterval(() => {
-        if (video.duration && video.duration > 0) {
-          videoDuration = video.duration;
-          console.log('Duración del video:', videoDuration, 'segundos');
-          clearInterval(checkDuration);
-          
-          // Monitorear tiempo para mostrar overlay
-          timeUpdateInterval = setInterval(() => {
-            if (video.currentTime && videoDuration) {
-              const currentTime = video.currentTime;
-              const remainingTime = videoDuration - currentTime;
-              
-              // Mostrar overlay 3 segundos antes del final
-              if (remainingTime <= 3 && !overlayShown) {
-                showWhatsAppOverlay();
-                overlayShown = true;
-                clearInterval(timeUpdateInterval);
-              }
-            }
-          }, 100); // Verificar cada 100ms
-        }
-      }, 100);
-    }
-
-    // 7. MOSTRAR OVERLAY DE WHATSAPP
-    function showWhatsAppOverlay() {
-      whatsappOverlay.classList.add('active');
-      console.log('Overlay de WhatsApp mostrado 3 segundos antes del final');
-      
-      // Pausar video cuando aparece el overlay
-      if (isPlaying) {
-        video.pause();
-        isPlaying = false;
-        updatePlayPauseIcon();
-      }
-    }
-
-    // 8. BOTÓN DE WHATSAPP
-    whatsappRedirectBtn.addEventListener('click', function(e) {
-      e.preventDefault();
-      window.open('https://wa.link/kbjaz7', '_blank');
-    });
-
-    // 9. CERRAR VIDEO
+    // 10. Cerrar video
     closeVideo.addEventListener('click', function() {
-      video.pause();
-      isPlaying = false;
-      updatePlayPauseIcon();
+      // Detener video
+      if (player && player.stopVideo) {
+        player.stopVideo();
+      }
       
-      // Ocultar video container
+      // Ocultar contenedor de video
       videoContainer.classList.remove('active');
       
       // Mostrar thumbnail nuevamente
       thumbnailContainer.style.display = 'flex';
       
-      // Ocultar controles
-      videoControls.classList.remove('visible');
-      
       // Ocultar overlay de WhatsApp si está visible
       if (overlayShown) {
         whatsappOverlay.classList.remove('active');
         overlayShown = false;
       }
       
-      // Detener seguimiento del tiempo
+      // Limpiar intervalo de tiempo
       if (timeUpdateInterval) {
         clearInterval(timeUpdateInterval);
       }
     });
 
-    // 10. MOSTRAR/OCULTAR CONTROLES
-    function showControls() {
-      videoControls.classList.add('visible');
-      
-      // Ocultar controles después de 3 segundos
-      clearTimeout(controlsTimeout);
-      controlsTimeout = setTimeout(() => {
-        if (isPlaying) {
-          videoControls.classList.remove('visible');
-        }
-      }, 3000);
-    }
+    // 11. Botón de WhatsApp
+    whatsappRedirectBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      window.open('https://wa.link/kbjaz7', '_blank');
+    });
 
-    // Mostrar controles al mover el mouse sobre el video
-    videoContainer.addEventListener('mousemove', function() {
-      if (videoContainer.classList.contains('active')) {
-        showControls();
+    // 12. Cerrar overlay si se hace clic fuera del contenido
+    whatsappOverlay.addEventListener('click', function(e) {
+      if (e.target === whatsappOverlay) {
+        whatsappOverlay.classList.remove('active');
       }
     });
 
-    // 11. MANEJAR ESTADOS DEL VIDEO
-    video.addEventListener('play', function() {
-      isPlaying = true;
-      updatePlayPauseIcon();
-      showControls();
-    });
-
-    video.addEventListener('pause', function() {
-      isPlaying = false;
-      updatePlayPauseIcon();
-      showControls();
-    });
-
-    video.addEventListener('ended', function() {
-      isPlaying = false;
-      updatePlayPauseIcon();
-      showControls();
-      
-      // Mostrar overlay si no se ha mostrado
-      if (!overlayShown) {
-        showWhatsAppOverlay();
-      }
-    });
-
-    // 12. MANEJAR ERRORES DEL VIDEO
-    video.addEventListener('error', function(e) {
-      console.error('Error del video:', e);
-      
-      // Mostrar mensaje en thumbnail
-      thumbnailContainer.innerHTML = `
-        <div class="thumbnail-content">
-          <h1 class="thumbnail-title">
-            Sistema de <span>AUTOMATIZACIÓN</span><br>Con IA Para Ingresos Pasivos
-          </h1>
-          <p class="thumbnail-subtitle">
-            Descubre el método probado que genera resultados desde el primer día. 
-            Sin experiencia técnica, 100% desde tu celular.
-          </p>
-          
-          <div style="margin: 40px 0; padding: 20px; background: rgba(245, 158, 11, 0.1); border-radius: 15px;">
-            <p style="color: var(--accent); font-weight: 600;">⚠️ No se pudo cargar el video</p>
-            <p style="color: var(--text-muted); margin-top: 10px;">
-              No te preocupes, aún puedes acceder al sistema completo. 
-              Haz clic en el botón de WhatsApp para obtener toda la información.
-            </p>
-          </div>
-          
-          <a href="https://wa.link/kbjaz7" target="_blank" class="whatsapp-btn" style="font-size: 1.1rem; padding: 18px 40px;">
-            <i class="fab fa-whatsapp"></i>
-            Quiero comenzar ahora
-          </a>
-        </div>
-      `;
-      
-      thumbnailContainer.style.display = 'flex';
-      
-      // Mostrar overlay de WhatsApp inmediatamente
-      setTimeout(() => {
-        showWhatsAppOverlay();
-      }, 1000);
-    });
-
-    // 13. MOSTRAR OVERLAY COMO RESPALDO
+    // 13. Mostrar overlay después de 45 segundos como respaldo
     setTimeout(() => {
-      if (!overlayShown && video.currentTime > 0) {
+      if (!overlayShown && videoContainer.classList.contains('active')) {
         showWhatsAppOverlay();
-        clearInterval(timeUpdateInterval);
+        if (timeUpdateInterval) {
+          clearInterval(timeUpdateInterval);
+        }
       }
     }, 45000);
 
-    // 14. ANIMAR ELEMENTOS AL SCROLL
+    // 14. Animar elementos al hacer scroll
     const observerOptions = {
       threshold: 0.1,
       rootMargin: '0px 0px -50px 0px'
@@ -1017,7 +871,7 @@
       observer.observe(card);
     });
 
-    // 15. REDIRIGIR TODOS LOS BOTONES DE WHATSAPP
+    // 15. Redirigir todos los botones de WhatsApp
     document.querySelectorAll('a[href*="wa.link"]').forEach(link => {
       link.addEventListener('click', function(e) {
         e.preventDefault();
@@ -1027,19 +881,8 @@
       });
     });
 
-    // 16. TECLA ESPACIO PARA PAUSAR/REPRODUCIR
-    document.addEventListener('keydown', function(e) {
-      if (e.code === 'Space' && document.activeElement.tagName !== 'INPUT') {
-        e.preventDefault();
-        if (videoContainer.classList.contains('active')) {
-          if (isPlaying) {
-            video.pause();
-          } else {
-            video.play();
-          }
-        }
-      }
-    });
+    // 16. Función global necesaria para YouTube API
+    window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
   </script>
 </body>
 </html>
