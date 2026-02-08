@@ -13,13 +13,14 @@
       --whatsapp: #25d366;
       --text: #ffffff;
       --text-muted: #94a3b8;
+      --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     }
 
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-family: 'Montserrat', 'Inter', -apple-system, sans-serif;
     }
 
     body {
@@ -28,163 +29,374 @@
       overflow-x: hidden;
     }
 
-    /* Header Simple */
+    /* Header Mejorado */
+    .pre-header {
+      background: linear-gradient(90deg, var(--accent), #fbbf24);
+      padding: 8px 0;
+      text-align: center;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: #000;
+    }
+
     header {
       position: fixed;
-      top: 0;
+      top: 40px;
       width: 100%;
-      padding: 20px 5%;
+      padding: 25px 5%;
       background: rgba(10, 10, 15, 0.95);
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(15px);
       z-index: 1000;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      border-bottom: 2px solid rgba(245, 158, 11, 0.2);
     }
 
-    .logo {
-      font-size: 1.8rem;
-      font-weight: 800;
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .logo-icon {
+      font-size: 2.5rem;
+      color: var(--accent);
       background: linear-gradient(135deg, var(--accent), #fbbf24);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
     }
 
-    .whatsapp-btn {
-      background: var(--whatsapp);
+    .logo-text {
+      font-size: 1.8rem;
+      font-weight: 900;
+      letter-spacing: 1px;
+    }
+
+    .logo-highlight {
+      color: var(--accent);
+      text-shadow: 0 0 10px rgba(245, 158, 11, 0.3);
+    }
+
+    .header-cta {
+      background: linear-gradient(135deg, var(--whatsapp), #128c7e);
       color: white;
-      padding: 12px 25px;
-      border-radius: 30px;
-      font-weight: 700;
+      padding: 15px 35px;
+      border-radius: 35px;
+      font-weight: 800;
       text-decoration: none;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
       transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+      box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-size: 0.95rem;
     }
 
-    .whatsapp-btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+    .header-cta:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 8px 25px rgba(37, 211, 102, 0.6);
     }
 
     /* Video Container */
-    .video-container {
+    .video-hero {
       width: 100%;
       height: 100vh;
-      background: #000;
       position: relative;
+      background: #000;
+      margin-top: 0;
     }
 
-    /* YouTube Video */
-    #youtube-video {
+    #video-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.3);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+      opacity: 1;
+      transition: opacity 0.5s ease;
+    }
+
+    #video-overlay.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .play-cta {
+      margin-bottom: 30px;
+    }
+
+    .play-btn {
+      width: 100px;
+      height: 100px;
+      background: rgba(245, 158, 11, 0.9);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: 3px solid white;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7); }
+      70% { transform: scale(1.1); box-shadow: 0 0 0 20px rgba(245, 158, 11, 0); }
+      100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
+    }
+
+    .play-btn:hover {
+      transform: scale(1.1);
+      background: var(--accent);
+    }
+
+    .video-title {
+      font-size: 3.5rem;
+      font-weight: 900;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      line-height: 1.2;
+    }
+
+    .video-title span {
+      color: var(--accent);
+      background: linear-gradient(135deg, var(--accent), #fbbf24);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .video-subtitle {
+      font-size: 1.5rem;
+      margin-bottom: 40px;
+      max-width: 800px;
+      color: var(--text-muted);
+    }
+
+    /* Video Element */
+    #main-video {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
 
-    /* Timed WhatsApp Button */
-    .whatsapp-timed-btn {
-      position: fixed;
-      bottom: 40px;
-      left: 50%;
-      transform: translateX(-50%) translateY(100px);
+    /* WhatsApp CTA Overlay (aparece 3 segundos antes del final) */
+    .whatsapp-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(10, 10, 15, 0.95);
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 40px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.8s ease;
+    }
+
+    .whatsapp-overlay.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .whatsapp-content {
+      background: linear-gradient(135deg, var(--secondary), #0a0a0f);
+      padding: 70px 50px;
+      border-radius: 40px;
+      text-align: center;
+      max-width: 900px;
+      width: 90%;
+      border: 3px solid rgba(37, 211, 102, 0.3);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+      animation: slideUp 0.8s ease 0.3s both;
+      position: relative;
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .whatsapp-icon {
+      font-size: 5rem;
+      color: var(--whatsapp);
+      margin-bottom: 30px;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+
+    .whatsapp-title {
+      font-size: 3rem;
+      font-weight: 900;
+      margin-bottom: 30px;
+      color: var(--accent);
+      line-height: 1.2;
+    }
+
+    .whatsapp-subtitle {
+      font-size: 1.4rem;
+      color: var(--text-muted);
+      margin-bottom: 50px;
+      max-width: 700px;
+      line-height: 1.6;
+    }
+
+    .whatsapp-button {
       background: linear-gradient(135deg, var(--whatsapp), #128c7e);
       color: white;
-      padding: 20px 50px;
-      border-radius: 50px;
-      font-size: 1.3rem;
-      font-weight: 800;
+      padding: 25px 70px;
+      border-radius: 60px;
+      font-size: 1.6rem;
+      font-weight: 900;
       text-decoration: none;
-      display: flex;
+      display: inline-flex;
       align-items: center;
-      gap: 15px;
+      gap: 20px;
+      transition: all 0.3s ease;
       box-shadow: 0 10px 40px rgba(37, 211, 102, 0.5);
-      z-index: 100;
-      opacity: 0;
-      transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-      white-space: nowrap;
-      border: none;
-      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
 
-    .whatsapp-timed-btn.visible {
-      opacity: 1;
-      transform: translateX(-50%) translateY(0);
+    .whatsapp-button:hover {
+      transform: translateY(-8px) scale(1.05);
+      box-shadow: 0 15px 50px rgba(37, 211, 102, 0.7);
     }
 
-    .whatsapp-timed-btn:hover {
-      transform: translateX(-50%) scale(1.05);
-      box-shadow: 0 15px 50px rgba(37, 211, 102, 0.6);
+    .whatsapp-bonus {
+      margin-top: 40px;
+      padding: 25px;
+      background: rgba(245, 158, 11, 0.1);
+      border-radius: 20px;
+      border-left: 4px solid var(--accent);
+    }
+
+    .whatsapp-bonus p {
+      font-size: 1.2rem;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+
+    .whatsapp-bonus strong {
+      color: var(--accent);
     }
 
     /* Content Sections */
     .content-section {
-      padding: 80px 5%;
-      max-width: 1200px;
+      padding: 100px 5%;
+      max-width: 1400px;
       margin: 0 auto;
     }
 
     .section-title {
-      font-size: 3rem;
+      font-size: 4rem;
       text-align: center;
-      margin-bottom: 50px;
+      margin-bottom: 80px;
+      background: linear-gradient(135deg, var(--accent), #fbbf24);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 150px;
+      height: 5px;
+      background: linear-gradient(90deg, var(--accent), #fbbf24);
+      border-radius: 5px;
+    }
+
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 60px;
+      margin: 100px 0;
+    }
+
+    .benefit-card {
+      background: linear-gradient(145deg, #1a1a24, #0f0f14);
+      padding: 60px 40px;
+      border-radius: 30px;
+      text-align: center;
+      transition: all 0.4s ease;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .benefit-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, var(--accent), #fbbf24);
+    }
+
+    .benefit-card:hover {
+      transform: translateY(-20px);
+      box-shadow: 0 30px 60px rgba(245, 158, 11, 0.2);
+      border-color: var(--accent);
+    }
+
+    .benefit-icon {
+      font-size: 5rem;
+      margin-bottom: 40px;
       background: linear-gradient(135deg, var(--accent), #fbbf24);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
     }
 
-    .benefits-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 40px;
-      margin: 80px 0;
-    }
-
-    .benefit-card {
-      background: var(--secondary);
-      padding: 50px 30px;
-      border-radius: 25px;
-      text-align: center;
-      transition: all 0.4s ease;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .benefit-card:hover {
-      transform: translateY(-15px);
-      border-color: var(--accent);
-      box-shadow: 0 20px 40px rgba(245, 158, 11, 0.2);
-    }
-
-    .benefit-icon {
-      font-size: 4rem;
-      color: var(--accent);
-      margin-bottom: 25px;
-    }
-
     .benefit-title {
-      font-size: 1.8rem;
-      margin-bottom: 20px;
-      font-weight: 700;
+      font-size: 2.2rem;
+      margin-bottom: 25px;
+      font-weight: 800;
     }
 
     .benefit-desc {
       color: var(--text-muted);
-      line-height: 1.7;
-      font-size: 1.1rem;
+      line-height: 1.8;
+      font-size: 1.2rem;
     }
 
     /* Final CTA */
     .final-cta {
-      background: linear-gradient(135deg, rgba(26, 26, 36, 0.8), rgba(10, 10, 15, 0.9));
-      padding: 100px 50px;
-      border-radius: 40px;
+      background: linear-gradient(135deg, rgba(26, 26, 36, 0.9), rgba(10, 10, 15, 0.95));
+      padding: 120px 60px;
+      border-radius: 50px;
       text-align: center;
-      margin-top: 100px;
-      border: 2px solid rgba(245, 158, 11, 0.3);
+      margin-top: 150px;
+      border: 3px solid rgba(245, 158, 11, 0.3);
       position: relative;
       overflow: hidden;
     }
@@ -192,26 +404,41 @@
     .final-cta::before {
       content: '';
       position: absolute;
-      top: -50%;
-      right: -50%;
-      width: 200px;
-      height: 200px;
+      top: -100px;
+      right: -100px;
+      width: 300px;
+      height: 300px;
       background: radial-gradient(circle, rgba(245, 158, 11, 0.1), transparent 70%);
       border-radius: 50%;
     }
 
+    .final-cta::after {
+      content: '';
+      position: absolute;
+      bottom: -100px;
+      left: -100px;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(37, 211, 102, 0.1), transparent 70%);
+      border-radius: 50%;
+    }
+
     .final-cta h2 {
-      font-size: 3rem;
-      margin-bottom: 30px;
+      font-size: 4rem;
+      margin-bottom: 40px;
       position: relative;
       z-index: 2;
+      background: linear-gradient(135deg, var(--accent), #fbbf24);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
     }
 
     .final-cta p {
       color: var(--text-muted);
-      font-size: 1.3rem;
-      max-width: 800px;
-      margin: 0 auto 50px;
+      font-size: 1.5rem;
+      max-width: 900px;
+      margin: 0 auto 60px;
       line-height: 1.8;
       position: relative;
       z-index: 2;
@@ -220,77 +447,112 @@
     /* Floating WhatsApp Button */
     .whatsapp-float {
       position: fixed;
-      bottom: 30px;
-      right: 30px;
-      width: 70px;
-      height: 70px;
-      background: var(--whatsapp);
+      bottom: 40px;
+      right: 40px;
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, var(--whatsapp), #128c7e);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 2rem;
+      font-size: 2.5rem;
       color: white;
-      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+      box-shadow: 0 10px 30px rgba(37, 211, 102, 0.6);
       z-index: 1000;
       text-decoration: none;
-      animation: pulse 2s infinite;
+      animation: float 3s ease-in-out infinite;
+      transition: all 0.3s ease;
     }
 
-    @keyframes pulse {
-      0% { 
-        transform: scale(1);
-        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
-      }
-      70% { 
-        transform: scale(1.05);
-        box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
-      }
-      100% { 
-        transform: scale(1);
-        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
-      }
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(5deg); }
     }
 
     .whatsapp-float:hover {
       animation: none;
-      transform: scale(1.1);
+      transform: scale(1.2) rotate(15deg);
     }
 
     /* Responsive */
+    @media (max-width: 1200px) {
+      .video-title {
+        font-size: 3rem;
+      }
+      
+      .whatsapp-title {
+        font-size: 2.5rem;
+      }
+      
+      .section-title {
+        font-size: 3rem;
+      }
+      
+      .final-cta h2 {
+        font-size: 3rem;
+      }
+    }
+
     @media (max-width: 768px) {
+      .pre-header {
+        font-size: 0.8rem;
+        padding: 6px 0;
+      }
+      
+      header {
+        top: 30px;
+        padding: 15px 5%;
+      }
+      
+      .logo-text {
+        font-size: 1.5rem;
+      }
+      
+      .header-cta {
+        padding: 12px 25px;
+        font-size: 0.85rem;
+      }
+      
+      .video-title {
+        font-size: 2.2rem;
+      }
+      
+      .video-subtitle {
+        font-size: 1.2rem;
+        padding: 0 20px;
+      }
+      
+      .play-btn {
+        width: 80px;
+        height: 80px;
+        font-size: 2rem;
+      }
+      
+      .whatsapp-content {
+        padding: 40px 25px;
+      }
+      
+      .whatsapp-title {
+        font-size: 2rem;
+      }
+      
+      .whatsapp-subtitle {
+        font-size: 1.1rem;
+      }
+      
+      .whatsapp-button {
+        padding: 20px 40px;
+        font-size: 1.2rem;
+      }
+      
       .section-title {
         font-size: 2.2rem;
       }
       
-      .whatsapp-timed-btn {
-        padding: 15px 30px;
-        font-size: 1.1rem;
-        bottom: 20px;
-        width: 90%;
-        text-align: center;
-        justify-content: center;
-      }
-      
       .benefits-grid {
         grid-template-columns: 1fr;
-        gap: 30px;
-      }
-      
-      .content-section {
-        padding: 50px 5%;
-      }
-      
-      .final-cta {
-        padding: 60px 25px;
-      }
-      
-      .final-cta h2 {
-        font-size: 2.2rem;
-      }
-      
-      .final-cta p {
-        font-size: 1.1rem;
+        gap: 40px;
       }
       
       .benefit-card {
@@ -298,71 +560,137 @@
       }
       
       .benefit-icon {
-        font-size: 3rem;
+        font-size: 4rem;
       }
       
       .benefit-title {
-        font-size: 1.5rem;
+        font-size: 1.8rem;
       }
       
-      .whatsapp-btn {
-        padding: 10px 20px;
-        font-size: 0.9rem;
+      .final-cta {
+        padding: 60px 30px;
+        margin-top: 80px;
       }
       
-      .logo {
-        font-size: 1.5rem;
+      .final-cta h2 {
+        font-size: 2.2rem;
+      }
+      
+      .final-cta p {
+        font-size: 1.2rem;
+      }
+      
+      .whatsapp-float {
+        width: 70px;
+        height: 70px;
+        font-size: 2rem;
+        bottom: 30px;
+        right: 30px;
       }
     }
   </style>
 </head>
 <body>
-  <!-- Header -->
+  <!-- Pre-Header -->
+  <div class="pre-header">
+    🚀 OFERTA LIMITADA: Primeros 10 contactos hoy reciben BONUS ESPECIAL
+  </div>
+
+  <!-- Header Mejorado -->
   <header>
-    <div class="logo">AiViralElTigre</div>
-    <a href="https://wa.link/kbjaz7" target="_blank" class="whatsapp-btn">
-      <i class="fab fa-whatsapp"></i> WhatsApp
+    <div class="logo-container">
+      <div class="logo-icon">
+        <i class="fas fa-bolt"></i>
+      </div>
+      <div class="logo-text">
+        AiViral<span class="logo-highlight">ElTigre</span>
+      </div>
+    </div>
+    <a href="https://wa.link/kbjaz7" target="_blank" class="header-cta">
+      <i class="fab fa-whatsapp"></i> 
+      <span>Acceso Inmediato</span>
     </a>
   </header>
 
-  <!-- Video Container -->
-  <div class="video-container">
-    <!-- YouTube Video Embed -->
-    <iframe 
-      id="youtube-video"
-      src="https://www.youtube.com/embed/2bWD3uLcwss?autoplay=1&mute=1&controls=1&showinfo=0&rel=0&modestbranding=1&enablejsapi=1"
-      title="Sistema de Automatización de Ingresos"
-      frameborder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen>
-    </iframe>
-  </div>
+  <!-- Video Hero -->
+  <section class="video-hero">
+    <!-- Video Overlay (inicial) -->
+    <div id="video-overlay">
+      <div class="play-cta">
+        <div class="play-btn" id="play-btn">
+          <i class="fas fa-play"></i>
+        </div>
+      </div>
+      <h1 class="video-title">
+        Sistema de <span>AUTOMATIZACIÓN</span><br>Con IA Para Ingresos Pasivos
+      </h1>
+      <p class="video-subtitle">
+        Descubre el método probado que genera resultados desde el primer día. 
+        Sin experiencia técnica, 100% desde tu celular.
+      </p>
+      <a href="https://wa.link/kbjaz7" target="_blank" class="header-cta" style="background: linear-gradient(135deg, var(--accent), #fbbf24); box-shadow: 0 5px 20px rgba(245, 158, 11, 0.4);">
+        <i class="fab fa-whatsapp"></i>
+        Quiero Comenzar
+      </a>
+    </div>
 
-  <!-- Timed WhatsApp Button -->
-  <button class="whatsapp-timed-btn" id="timed-whatsapp-btn">
-    <i class="fab fa-whatsapp"></i>
-    ¡QUIERO EL SISTEMA AHORA!
-  </button>
+    <!-- Video Element -->
+    <video id="main-video" preload="metadata" playsinline webkit-playsinline>
+      <source src="https://drive.google.com/uc?export=download&id=1bGoz544pSDrjGQcWHTktdY-7tsEEx7pv" type="video/mp4">
+      Tu navegador no soporta videos.
+    </video>
+
+    <!-- WhatsApp Overlay (aparece 3 segundos antes del final) -->
+    <div class="whatsapp-overlay" id="whatsapp-overlay">
+      <div class="whatsapp-content">
+        <div class="whatsapp-icon">
+          <i class="fab fa-whatsapp"></i>
+        </div>
+        <h2 class="whatsapp-title">¡ES TU MOMENTO!</h2>
+        <p class="whatsapp-subtitle">
+          Has visto el poder del sistema. Ahora toma acción y comienza a generar 
+          ingresos automatizados. Contacta ahora y recibe acceso VIP inmediato.
+        </p>
+        <a href="https://wa.link/kbjaz7" target="_blank" class="whatsapp-button" id="whatsapp-redirect-btn">
+          <i class="fab fa-whatsapp"></i>
+          Contactar por WhatsApp
+        </a>
+        
+        <div class="whatsapp-bonus">
+          <p><strong>🎁 BONUS EXCLUSIVO:</strong> Primeros 10 contactos hoy reciben:</p>
+          <p>✅ Acceso VIP inmediato</p>
+          <p>✅ Sesión de configuración personalizada</p>
+          <p>✅ Plantillas premium de automatización</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- Content Section -->
   <section class="content-section">
-    <h2 class="section-title">Sistema Comprobado de Automatización</h2>
+    <h2 class="section-title">¿Por Qué Este Sistema?</h2>
     
     <div class="benefits-grid">
       <div class="benefit-card">
         <div class="benefit-icon">
-          <i class="fas fa-brain"></i>
+          <i class="fas fa-robot"></i>
         </div>
-        <h3 class="benefit-title">IA que Trabaja 24/7</h3>
-        <p class="benefit-desc">Tecnología de inteligencia artificial que automatiza la creación de contenido y captación de clientes sin parar.</p>
+        <h3 class="benefit-title">Automatización Total con IA</h3>
+        <p class="benefit-desc">
+          Tecnología de inteligencia artificial avanzada que trabaja 24/7 creando contenido, 
+          captando clientes y gestionando ventas automáticamente.
+        </p>
       </div>
       
       <div class="benefit-card">
         <div class="benefit-icon">
-          <i class="fas fa-rocket"></i>
+          <i class="fas fa-chart-line"></i>
         </div>
-        <h3 class="benefit-title">Resultados Rápidos</h3>
-        <p class="benefit-desc">Primeros resultados en menos de 7 días. Método probado y optimizado para máxima conversión desde el día 1.</p>
+        <h3 class="benefit-title">Resultados Comprobados</h3>
+        <p class="benefit-desc">
+          Más de 500 personas ya están generando ingresos pasivos. Primeros resultados 
+          visibles en menos de 7 días con nuestro método probado.
+        </p>
       </div>
       
       <div class="benefit-card">
@@ -370,16 +698,23 @@
           <i class="fas fa-mobile-alt"></i>
         </div>
         <h3 class="benefit-title">100% Desde Tu Celular</h3>
-        <p class="benefit-desc">Todo el proceso se gestiona desde tu dispositivo móvil. Sin equipos costosos ni conocimientos técnicos avanzados.</p>
+        <p class="benefit-desc">
+          Todo el proceso se gestiona desde cualquier dispositivo móvil. 
+          Sin equipos costosos, sin conocimientos técnicos avanzados.
+        </p>
       </div>
     </div>
     
     <div class="final-cta">
-      <h2>¿Listo para Transformar Tus Ingresos?</h2>
-      <p>Únete a más de 500 personas que ya están generando ingresos pasivos con nuestro sistema. Acceso inmediato, soporte personalizado y resultados comprobados. No esperes más para empezar.</p>
-      <a href="https://wa.link/kbjaz7" target="_blank" class="whatsapp-btn" style="padding: 18px 45px; font-size: 1.2rem;">
+      <h2>Transforma Tu Realidad Financiera</h2>
+      <p>
+        No dejes pasar esta oportunidad. El sistema está probado, los resultados están 
+        comprobados. Todo lo que necesitas es dar el primer paso y contactarnos por WhatsApp 
+        para comenzar hoy mismo.
+      </p>
+      <a href="https://wa.link/kbjaz7" target="_blank" class="whatsapp-button" style="font-size: 1.4rem; padding: 20px 50px;">
         <i class="fab fa-whatsapp"></i>
-        OBTENER ACCESO INMEDIATO
+        Obtener Acceso VIP Ahora
       </a>
     </div>
   </section>
@@ -390,106 +725,164 @@
   </a>
 
   <script>
-    // Cargar la API de YouTube
-    const tag = document.createElement('script');
-    tag.src = "https://www.youtube.com/iframe_api";
-    const firstScriptTag = document.getElementsByTagName('script')[0];
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
     // Variables globales
-    let player;
+    const video = document.getElementById('main-video');
+    const playBtn = document.getElementById('play-btn');
+    const videoOverlay = document.getElementById('video-overlay');
+    const whatsappOverlay = document.getElementById('whatsapp-overlay');
+    const whatsappRedirectBtn = document.getElementById('whatsapp-redirect-btn');
     let videoDuration = 0;
-    let checkInterval;
-    let buttonShown = false;
-    const whatsappBtn = document.getElementById('timed-whatsapp-btn');
+    let timeUpdateInterval;
+    let overlayShown = false;
 
-    // Inicializar el reproductor de YouTube
-    function onYouTubeIframeAPIReady() {
-      player = new YT.Player('youtube-video', {
-        events: {
-          'onReady': onPlayerReady,
-          'onStateChange': onPlayerStateChange
-        }
+    // Configurar video con audio
+    video.muted = false; // Permitir sonido
+    video.volume = 0.7; // Volumen al 70%
+
+    // Botón de reproducción
+    playBtn.addEventListener('click', function() {
+      const playPromise = video.play();
+      
+      if (playPromise !== undefined) {
+        playPromise.then(() => {
+          console.log('Video reproduciéndose con audio');
+          videoOverlay.classList.add('hidden');
+          startTimeTracking();
+        }).catch(error => {
+          console.log('Error al reproducir:', error);
+          // Si falla por políticas de autoplay, intentar con muted
+          video.muted = true;
+          video.play().then(() => {
+            videoOverlay.classList.add('hidden');
+            startTimeTracking();
+            // Mostrar mensaje para activar sonido
+            showAudioMessage();
+          });
+        });
+      }
+    });
+
+    // También iniciar al hacer clic en el overlay
+    videoOverlay.addEventListener('click', function(e) {
+      if (e.target === videoOverlay) {
+        playBtn.click();
+      }
+    });
+
+    // Mensaje para activar audio si está muteado
+    function showAudioMessage() {
+      const audioMsg = document.createElement('div');
+      audioMsg.style.position = 'absolute';
+      audioMsg.style.bottom = '20px';
+      audioMsg.style.left = '50%';
+      audioMsg.style.transform = 'translateX(-50%)';
+      audioMsg.style.backgroundColor = 'rgba(0,0,0,0.8)';
+      audioMsg.style.color = 'white';
+      audioMsg.style.padding = '10px 20px';
+      audioMsg.style.borderRadius = '25px';
+      audioMsg.style.zIndex = '10';
+      audioMsg.style.fontSize = '0.9rem';
+      audioMsg.innerHTML = '🔇 Haz clic aquí para activar el sonido';
+      
+      document.querySelector('.video-hero').appendChild(audioMsg);
+      
+      audioMsg.addEventListener('click', function() {
+        video.muted = false;
+        video.volume = 0.7;
+        audioMsg.innerHTML = '🔊 Sonido activado';
+        setTimeout(() => {
+          if (audioMsg.parentNode) {
+            audioMsg.parentNode.removeChild(audioMsg);
+          }
+        }, 2000);
       });
-    }
-
-    // Cuando el reproductor está listo
-    function onPlayerReady(event) {
-      console.log('Reproductor de YouTube listo');
-      videoDuration = player.getDuration();
-      console.log('Duración del video:', videoDuration, 'segundos');
       
-      // Configurar el botón para redirigir a WhatsApp
-      whatsappBtn.addEventListener('click', function() {
-        window.open('https://wa.link/kbjaz7', '_blank');
-      });
-    }
-
-    // Manejar cambios de estado del video
-    function onPlayerStateChange(event) {
-      // Video en reproducción
-      if (event.data === YT.PlayerState.PLAYING) {
-        console.log('Video reproduciéndose');
-        startTracking();
-      }
-      
-      // Video pausado
-      if (event.data === YT.PlayerState.PAUSED) {
-        console.log('Video pausado');
-        stopTracking();
-      }
-      
-      // Video terminado
-      if (event.data === YT.PlayerState.ENDED) {
-        console.log('Video terminado');
-        stopTracking();
-        if (!buttonShown) {
-          showWhatsAppButton();
+      setTimeout(() => {
+        if (audioMsg.parentNode) {
+          audioMsg.parentNode.removeChild(audioMsg);
         }
-      }
+      }, 10000);
     }
 
     // Iniciar seguimiento del tiempo
-    function startTracking() {
-      checkInterval = setInterval(() => {
-        if (player && player.getCurrentTime) {
-          const currentTime = player.getCurrentTime();
-          const remainingTime = videoDuration - currentTime;
+    function startTimeTracking() {
+      // Obtener duración cuando esté disponible
+      const checkDuration = setInterval(() => {
+        if (video.duration && video.duration > 0) {
+          videoDuration = video.duration;
+          console.log('Duración del video:', videoDuration, 'segundos');
+          clearInterval(checkDuration);
           
-          // Mostrar botón 2 segundos antes del final
-          if (remainingTime <= 2 && !buttonShown) {
-            showWhatsAppButton();
-            stopTracking();
-          }
+          // Monitorear tiempo para mostrar overlay
+          timeUpdateInterval = setInterval(() => {
+            const currentTime = video.currentTime;
+            const remainingTime = videoDuration - currentTime;
+            
+            // Mostrar overlay 3 segundos antes del final
+            if (remainingTime <= 3 && !overlayShown) {
+              showWhatsAppOverlay();
+              overlayShown = true;
+              clearInterval(timeUpdateInterval);
+            }
+          }, 100); // Verificar cada 100ms
         }
-      }, 100); // Verificar cada 100ms para mayor precisión
+      }, 100);
     }
 
-    // Detener seguimiento
-    function stopTracking() {
-      if (checkInterval) {
-        clearInterval(checkInterval);
+    // Mostrar overlay de WhatsApp
+    function showWhatsAppOverlay() {
+      whatsappOverlay.classList.add('active');
+      console.log('Overlay de WhatsApp mostrado 3 segundos antes del final');
+    }
+
+    // Botón de redirección a WhatsApp
+    whatsappRedirectBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      // Redirigir a WhatsApp
+      window.open('https://wa.link/kbjaz7', '_blank');
+      
+      // Cerrar overlay después de redirigir
+      setTimeout(() => {
+        whatsappOverlay.classList.remove('active');
+      }, 500);
+    });
+
+    // Cerrar overlay si se hace clic fuera del contenido
+    whatsappOverlay.addEventListener('click', function(e) {
+      if (e.target === whatsappOverlay) {
+        whatsappOverlay.classList.remove('active');
       }
-    }
+    });
 
-    // Mostrar botón de WhatsApp
-    function showWhatsAppButton() {
-      buttonShown = true;
-      whatsappBtn.classList.add('visible');
-      console.log('Botón de WhatsApp apareciendo 2 segundos antes del final');
-    }
+    // Manejar final del video
+    video.addEventListener('ended', function() {
+      if (!overlayShown) {
+        showWhatsAppOverlay();
+      }
+      clearInterval(timeUpdateInterval);
+    });
 
-    // Mostrar botón después de 30 segundos como respaldo
+    // Mostrar overlay después de 45 segundos como respaldo
     setTimeout(() => {
-      if (!buttonShown) {
-        showWhatsAppButton();
+      if (!overlayShown && video.currentTime > 0) {
+        showWhatsAppOverlay();
+        clearInterval(timeUpdateInterval);
       }
-    }, 30000);
+    }, 45000);
+
+    // Manejar errores del video
+    video.addEventListener('error', function(e) {
+      console.error('Error del video:', e);
+      
+      // Redirigir a WhatsApp si el video falla
+      showWhatsAppOverlay();
+      clearInterval(timeUpdateInterval);
+    });
 
     // Animar elementos al hacer scroll
     const observerOptions = {
       threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
+      rootMargin: '0px 0px -100px 0px'
     };
 
     const observer = new IntersectionObserver((entries) => {
@@ -504,12 +897,12 @@
     // Observar tarjetas de beneficios
     document.querySelectorAll('.benefit-card').forEach((card) => {
       card.style.opacity = '0';
-      card.style.transform = 'translateY(30px)';
-      card.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+      card.style.transform = 'translateY(40px)';
+      card.style.transition = 'opacity 1s ease, transform 1s ease';
       observer.observe(card);
     });
 
-    // Trackear clics en botones de WhatsApp
+    // Redirigir todos los botones de WhatsApp
     document.querySelectorAll('a[href*="wa.link"]').forEach(link => {
       link.addEventListener('click', function(e) {
         e.preventDefault();
@@ -519,8 +912,24 @@
       });
     });
 
-    // Función global necesaria para YouTube API
-    window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
+    // Intentar autoplay con sonido cuando la página cargue
+    document.addEventListener('DOMContentLoaded', function() {
+      // Pequeño retraso para asegurar que todo esté listo
+      setTimeout(() => {
+        const playPromise = video.play();
+        
+        if (playPromise !== undefined) {
+          playPromise.then(() => {
+            console.log('Autoplay exitoso con audio');
+            videoOverlay.classList.add('hidden');
+            startTimeTracking();
+          }).catch(error => {
+            console.log('Autoplay con audio bloqueado, esperando interacción');
+            // Mostrar overlay para que el usuario interactúe
+          });
+        }
+      }, 1000);
+    });
   </script>
 </body>
 </html>
