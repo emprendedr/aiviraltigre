@@ -1,708 +1,711 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Sistema AI para Automatizar Tus Ingresos | AiViralElTigre</title>
-  <meta name="description" content="Descubre el sistema de automatización con IA que te permitirá generar ingresos desde tu celular. Paso a paso, sin experiencia previa." />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema Automatizado de Ingresos | AiViralElTigre</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
-      --bg: #0b0f17;
-      --card: #121826;
-      --text: #e9eefc;
-      --muted: #b8c0d9;
-      --accent: #f6c04b;
-      --accent2: #ff8a3d;
+      --primary: #0f172a;
+      --secondary: #1e293b;
+      --accent: #f59e0b;
+      --accent-hover: #fbbf24;
       --whatsapp: #25d366;
-      --line: rgba(255,255,255,.10);
-      --shadow: 0 18px 60px rgba(0,0,0,.35);
-      --transition: all 0.3s ease;
+      --text: #f8fafc;
+      --text-muted: #cbd5e1;
+      --success: #10b981;
     }
 
-    * { 
-      box-sizing: border-box;
+    * {
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     }
 
-    html, body {
-      font-family: 'Segoe UI', system-ui, -apple-system, Roboto, sans-serif;
-      background: linear-gradient(180deg, #070a10 0%, #0b0f17 50%, #070a10 100%);
-      color: var(--text);
-      line-height: 1.6;
+    html {
       scroll-behavior: smooth;
     }
 
-    a {
-      text-decoration: none;
-      color: inherit;
+    body {
+      background-color: var(--primary);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
     }
 
     .container {
-      max-width: 1100px;
+      max-width: 1200px;
       margin: 0 auto;
-      padding: 0 18px;
+      padding: 0 20px;
     }
 
-    /* Header y Navegación */
-    .nav {
-      position: sticky;
+    /* Header */
+    header {
+      position: fixed;
       top: 0;
-      z-index: 1000;
-      background: rgba(7,10,16,.92);
+      width: 100%;
+      background: rgba(15, 23, 42, 0.95);
       backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--line);
-      padding: 10px 0;
+      z-index: 1000;
+      padding: 15px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
 
-    .nav__inner {
+    .header-container {
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      padding: 8px 0;
+      align-items: center;
     }
 
-    .brand {
-      font-weight: 900;
-      letter-spacing: .4px;
-      font-size: 1.5rem;
-      background: linear-gradient(90deg, var(--accent), var(--accent2));
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--accent), #fbbf24);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
       display: flex;
       align-items: center;
-      gap: 8px;
-    }
-
-    .brand i {
-      font-size: 1.3rem;
-    }
-
-    /* Botones */
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 14px 24px;
-      border-radius: 14px;
-      font-weight: 800;
-      text-decoration: none;
-      border: 0;
-      cursor: pointer;
-      transition: var(--transition);
-      text-align: center;
-      font-size: 1rem;
-    }
-
-    .btn--primary {
-      background: linear-gradient(180deg, var(--accent) 0%, #e7a92d 100%);
-      color: #10131a;
-      box-shadow: 0 12px 30px rgba(246,192,75,.22);
-    }
-
-    .btn--primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 18px 40px rgba(246,192,75,.3);
-    }
-
-    .btn--whatsapp {
-      background: linear-gradient(180deg, var(--whatsapp) 0%, #18b957 100%);
-      color: #07130c;
-      box-shadow: 0 12px 30px rgba(37,211,102,.18);
-    }
-
-    .btn--whatsapp:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 18px 40px rgba(37,211,102,.25);
-    }
-
-    .btn--ghost {
-      background: transparent;
-      color: var(--text);
-      border: 1px solid var(--line);
-      box-shadow: none;
-      font-weight: 700;
-    }
-
-    .btn--ghost:hover {
-      background: rgba(255,255,255,.05);
-    }
-
-    .btn--full {
-      width: 100%;
-      padding: 16px;
-      font-size: 1.1rem;
-    }
-
-    /* Hero Section */
-    .hero {
-      padding: 60px 0 40px;
-    }
-
-    .hero__grid {
-      display: grid;
-      grid-template-columns: 1.1fr .9fr;
-      gap: 40px;
-      align-items: center;
-    }
-
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 8px 16px;
-      border-radius: 999px;
-      background: rgba(246,192,75,.12);
-      border: 1px solid rgba(246,192,75,.28);
-      color: #ffd88b;
-      font-weight: 700;
-      font-size: 13px;
-      margin-bottom: 20px;
-    }
-
-    .hero__copy h1 {
-      font-size: 44px;
-      line-height: 1.05;
-      margin: 14px 0 16px;
-    }
-
-    .accent {
-      color: var(--accent);
-    }
-
-    .sub {
-      color: var(--muted);
-      font-size: 18px;
-      line-height: 1.5;
-      margin: 0 0 24px;
-    }
-
-    .hero__cta {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin: 24px 0 16px;
-    }
-
-    .trust {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-top: 20px;
-    }
-
-    .trust__item {
-      padding: 10px 16px;
-      border-radius: 12px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.04);
-      color: var(--muted);
-      font-weight: 700;
-      font-size: 14px;
-    }
-
-    .hero__media .frame {
-      border-radius: 22px;
-      overflow: hidden;
-      border: 1px solid var(--line);
-      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
-      box-shadow: var(--shadow);
-      transition: var(--transition);
-    }
-
-    .hero__media .frame:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 25px 60px rgba(0,0,0,.45);
-    }
-
-    .hero__media img {
-      width: 100%;
-      display: block;
-      height: auto;
-    }
-
-    .note {
-      margin: 14px 0 0;
-      color: var(--muted);
-      font-size: 13px;
-      text-align: center;
-      font-style: italic;
-    }
-
-    /* Secciones generales */
-    .section {
-      padding: 50px 0;
-    }
-
-    .section h2 {
-      font-size: 32px;
-      margin: 0 0 20px;
-      text-align: center;
-    }
-
-    /* Cards de beneficios */
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      margin-top: 30px;
-    }
-
-    .card {
-      background: rgba(255,255,255,.04);
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      padding: 24px;
-      transition: var(--transition);
-    }
-
-    .card:hover {
-      transform: translateY(-5px);
-      border-color: rgba(246,192,75,.3);
-      box-shadow: 0 15px 40px rgba(0,0,0,.25);
-    }
-
-    .card h3 {
-      margin: 0 0 12px;
-      font-size: 1.4rem;
-      display: flex;
-      align-items: center;
       gap: 10px;
     }
 
-    .card h3 i {
+    .logo i {
+      font-size: 1.5rem;
+    }
+
+    .cta-button {
+      background: linear-gradient(135deg, var(--whatsapp), #128c7e);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+    }
+
+    .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+    }
+
+    /* Video Hero Section */
+    .video-hero {
+      margin-top: 80px;
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+      margin-bottom: 60px;
+    }
+
+    .video-container {
+      position: relative;
+      width: 100%;
+      height: 70vh;
+      min-height: 500px;
+      background: #000;
+    }
+
+    #hero-video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .video-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(15, 23, 42, 0.9), transparent);
+      padding: 40px;
+      color: white;
+    }
+
+    .video-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 15px;
+      max-width: 700px;
+    }
+
+    .video-subtitle {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      max-width: 600px;
+      margin-bottom: 30px;
+    }
+
+    .play-button {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 80px;
+      height: 80px;
+      background: rgba(245, 158, 11, 0.9);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      z-index: 10;
+    }
+
+    .play-button i {
+      font-size: 2rem;
+      color: white;
+      margin-left: 5px;
+    }
+
+    .play-button:hover {
+      background: var(--accent);
+      transform: translate(-50%, -50%) scale(1.1);
+    }
+
+    /* Benefits Section */
+    .section-title {
+      text-align: center;
+      font-size: 2.2rem;
+      margin-bottom: 20px;
+      font-weight: 800;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      max-width: 700px;
+      margin: 0 auto 50px;
+    }
+
+    .benefits {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-bottom: 80px;
+    }
+
+    .benefit-card {
+      background: var(--secondary);
+      border-radius: 20px;
+      padding: 30px;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .benefit-card:hover {
+      transform: translateY(-10px);
+      border-color: var(--accent);
+      box-shadow: 0 15px 40px rgba(245, 158, 11, 0.15);
+    }
+
+    .benefit-icon {
+      font-size: 2.5rem;
       color: var(--accent);
+      margin-bottom: 20px;
     }
 
-    .card p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.5;
+    .benefit-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 15px;
     }
 
-    /* Sección CTA Final */
-    .section--dark {
-      background: radial-gradient(800px 500px at 20% 10%, rgba(246,192,75,.12), transparent 55%),
-                  radial-gradient(800px 500px at 80% 60%, rgba(255,138,61,.10), transparent 55%);
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
+    .benefit-description {
+      color: var(--text-muted);
+    }
+
+    /* CTA Section */
+    .cta-section {
+      background: linear-gradient(135deg, var(--secondary), #0f172a);
+      border-radius: 30px;
+      padding: 60px 40px;
+      text-align: center;
+      margin-bottom: 80px;
       position: relative;
       overflow: hidden;
+      border: 1px solid rgba(245, 158, 11, 0.2);
     }
 
-    .form__grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
-      align-items: start;
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(245, 158, 11, 0.1), transparent 70%);
+      border-radius: 50%;
     }
 
-    .bullets {
-      margin: 20px 0 0;
-      padding-left: 20px;
-      color: var(--muted);
-      line-height: 1.6;
-      font-size: 1.05rem;
-    }
-
-    .bullets li {
-      margin-bottom: 10px;
-    }
-
-    .mini {
-      color: #ffd88b;
+    .cta-title {
+      font-size: 2.2rem;
       font-weight: 800;
-      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    .cta-text {
       font-size: 1.1rem;
+      color: var(--text-muted);
+      max-width: 700px;
+      margin: 0 auto 40px;
     }
 
-    .formBox {
-      background: rgba(255,255,255,.04);
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      padding: 28px;
-      box-shadow: var(--shadow);
+    .cta-large-button {
+      background: linear-gradient(135deg, var(--whatsapp), #128c7e);
+      color: white;
+      border: none;
+      padding: 20px 50px;
+      border-radius: 50px;
+      font-weight: 800;
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 15px;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+    }
+
+    .cta-large-button:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px rgba(37, 211, 102, 0.5);
+    }
+
+    /* Steps Section */
+    .steps {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 80px;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .step {
+      flex: 1;
+      min-width: 250px;
       text-align: center;
+      padding: 30px 20px;
     }
 
-    .formBox h3 {
-      font-size: 1.8rem;
-      margin-bottom: 8px;
+    .step-number {
+      width: 60px;
+      height: 60px;
+      background: var(--accent);
+      color: var(--primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin: 0 auto 20px;
     }
 
-    .formBox .sub {
-      margin-bottom: 24px;
+    .step-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 15px;
     }
 
-    .fine {
-      margin-top: 16px;
-      font-size: 14px;
-      color: var(--muted);
-      font-style: italic;
+    .step-description {
+      color: var(--text-muted);
     }
 
     /* FAQ */
     .faq {
       max-width: 800px;
-      margin: 30px auto 0;
+      margin: 0 auto 80px;
     }
 
-    .faq details {
-      background: rgba(255,255,255,.04);
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: 18px 20px;
-      margin: 12px 0;
-      transition: var(--transition);
+    .faq-item {
+      background: var(--secondary);
+      border-radius: 15px;
+      margin-bottom: 15px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
-    .faq details[open] {
-      border-color: rgba(246,192,75,.3);
-    }
-
-    .faq summary {
-      cursor: pointer;
-      font-weight: 800;
+    .faq-question {
+      padding: 20px;
+      font-weight: 700;
       font-size: 1.1rem;
+      cursor: pointer;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
-    .faq summary::after {
-      content: '+';
-      font-size: 1.5rem;
-      color: var(--accent);
-      transition: var(--transition);
+    .faq-answer {
+      padding: 0 20px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      color: var(--text-muted);
     }
 
-    .faq details[open] summary::after {
-      content: '-';
+    .faq-item.active .faq-answer {
+      padding: 0 20px 20px;
+      max-height: 300px;
     }
 
-    .faq p {
-      color: var(--muted);
-      margin: 12px 0 0;
-      line-height: 1.55;
-      padding-left: 5px;
+    .faq-icon {
+      transition: transform 0.3s ease;
+    }
+
+    .faq-item.active .faq-icon {
+      transform: rotate(45deg);
     }
 
     /* Footer */
-    .footer {
-      padding: 24px 0;
-      border-top: 1px solid var(--line);
-      color: rgba(255,255,255,.75);
+    footer {
+      background: var(--secondary);
+      padding: 40px 0;
+      text-align: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
     }
 
-    .footer__inner {
+    .footer-logo {
+      font-size: 1.8rem;
+      font-weight: 800;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, var(--accent), #fbbf24);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .footer-text {
+      color: var(--text-muted);
+      margin-bottom: 30px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .whatsapp-float {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 70px;
+      height: 70px;
+      background: var(--whatsapp);
+      border-radius: 50%;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      flex-wrap: wrap;
+      justify-content: center;
+      font-size: 2rem;
+      color: white;
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+      z-index: 1000;
+      transition: all 0.3s ease;
+      text-decoration: none;
     }
 
-    .footer a {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 16px;
-      border-radius: 10px;
-      background: rgba(37,211,102,.1);
-      color: #25d366;
-      font-weight: 700;
-      transition: var(--transition);
-    }
-
-    .footer a:hover {
-      background: rgba(37,211,102,.2);
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+      box-shadow: 0 8px 25px rgba(37, 211, 102, 0.6);
     }
 
     /* Responsive */
-    @media (max-width: 900px) {
-      .hero__grid {
+    @media (max-width: 768px) {
+      .video-title {
+        font-size: 1.8rem;
+      }
+      
+      .video-subtitle {
+        font-size: 1rem;
+      }
+      
+      .video-container {
+        height: 50vh;
+        min-height: 400px;
+      }
+      
+      .section-title {
+        font-size: 1.8rem;
+      }
+      
+      .cta-title {
+        font-size: 1.8rem;
+      }
+      
+      .benefits {
         grid-template-columns: 1fr;
       }
       
-      .hero__copy h1 {
-        font-size: 36px;
-      }
-      
-      .cards {
-        grid-template-columns: 1fr;
-      }
-      
-      .form__grid {
-        grid-template-columns: 1fr;
-        gap: 30px;
-      }
-      
-      .hero__cta {
-        justify-content: center;
-      }
-    }
-
-    @media (max-width: 600px) {
-      .hero__copy h1 {
-        font-size: 28px;
-      }
-      
-      .sub {
-        font-size: 16px;
-      }
-      
-      .btn {
-        width: 100%;
-        justify-content: center;
-      }
-      
-      .hero__cta {
+      .steps {
         flex-direction: column;
       }
       
-      .trust {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      
-      .brand {
-        font-size: 1.2rem;
+      .cta-large-button {
+        padding: 18px 30px;
+        font-size: 1.1rem;
       }
     }
-
-    /* Animaciones */
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .fade-in {
-      animation: fadeIn 0.8s ease forwards;
-    }
-
-    .delay-1 { animation-delay: 0.2s; }
-    .delay-2 { animation-delay: 0.4s; }
-    .delay-3 { animation-delay: 0.6s; }
   </style>
 </head>
-
 <body>
-  <!-- Header con navegación -->
-  <header class="nav">
-    <div class="container nav__inner">
-      <div class="brand">
-        <i class="fas fa-bolt"></i> AiViralElTigre
+  <!-- Header -->
+  <header>
+    <div class="container header-container">
+      <div class="logo">
+        <i class="fas fa-bolt"></i>
+        AiViralElTigre
       </div>
-
-      <!-- Botón de WhatsApp en el menú -->
-      <a class="btn btn--whatsapp" href="https://wa.link/kbjaz7" target="_blank" rel="noopener">
-        <i class="fab fa-whatsapp"></i> Comenzar ahora
+      <a href="https://wa.link/kbjaz7" target="_blank" class="cta-button">
+        <i class="fab fa-whatsapp"></i>
+        Comenzar Ahora
       </a>
     </div>
   </header>
 
-  <main>
-    <!-- Sección Hero principal -->
-    <section class="hero">
-      <div class="container hero__grid">
-        <div class="hero__copy fade-in">
-          <span class="pill">
-            <i class="fas fa-star"></i> Nuevo • IA + Videos + Automatización
-          </span>
+  <!-- Video Hero Section -->
+  <section class="video-hero container">
+    <div class="video-container">
+      <video id="hero-video" preload="auto" loop muted playsinline>
+        <source src="https://drive.google.com/uc?export=download&id=1bGoz544pSDrjGQcWHTktdY-7tsEEx7pv" type="video/mp4">
+        Tu navegador no soporta el video.
+      </video>
+      <div class="play-button" id="play-button">
+        <i class="fas fa-play"></i>
+      </div>
+      <div class="video-overlay">
+        <h1 class="video-title">Automatiza Tus Ingresos Con IA</h1>
+        <p class="video-subtitle">Sistema probado que genera resultados desde el día 1. Sin experiencia técnica necesaria.</p>
+        <a href="https://wa.link/kbjaz7" target="_blank" class="cta-button">
+          <i class="fab fa-whatsapp"></i>
+          Obtener Acceso Inmediato
+        </a>
+      </div>
+    </div>
+  </section>
 
-          <h1>Sistema para <span class="accent">automatizar tus ingresos</span> ya está aquí</h1>
-          <p class="sub">
-            Descubre un método práctico para empezar a ganar usando contenido que convierte y automatización,
-            aunque hoy estés empezando desde cero. Sin complicaciones, sin experiencia previa.
-          </p>
-
-          <div class="hero__cta">
-            <!-- Botón principal a WhatsApp -->
-            <a class="btn btn--primary" href="https://wa.link/kbjaz7" target="_blank" rel="noopener">
-              <i class="fab fa-whatsapp"></i> Comenzar ahora
-            </a>
-
-            <!-- Botón secundario -->
-            <a class="btn btn--ghost" href="#beneficios">
-              <i class="fas fa-info-circle"></i> Conocer más
-            </a>
-          </div>
-
-          <div class="trust">
-            <div class="trust__item"><i class="fas fa-check-circle"></i> Paso a paso</div>
-            <div class="trust__item"><i class="fas fa-check-circle"></i> Sin experiencia</div>
-            <div class="trust__item"><i class="fas fa-check-circle"></i> Desde tu celular</div>
-          </div>
+  <!-- Benefits Section -->
+  <section class="container">
+    <h2 class="section-title">¿Por Qué Este Sistema?</h2>
+    <p class="section-subtitle">Diseñado para resultados rápidos y consistentes</p>
+    
+    <div class="benefits">
+      <div class="benefit-card">
+        <div class="benefit-icon">
+          <i class="fas fa-brain"></i>
         </div>
+        <h3 class="benefit-title">IA Integrada</h3>
+        <p class="benefit-description">Tecnología de inteligencia artificial que automatiza la creación de contenido y captación de clientes.</p>
+      </div>
+      
+      <div class="benefit-card">
+        <div class="benefit-icon">
+          <i class="fas fa-rocket"></i>
+        </div>
+        <h3 class="benefit-title">Resultados Rápidos</h3>
+        <p class="benefit-description">Primeros resultados en menos de 7 días. Sistema probado y optimizado para conversión.</p>
+      </div>
+      
+      <div class="benefit-card">
+        <div class="benefit-icon">
+          <i class="fas fa-mobile-alt"></i>
+        </div>
+        <h3 class="benefit-title">Desde Tu Celular</h3>
+        <p class="benefit-description">Todo el proceso se gestiona desde tu dispositivo móvil. Sin equipos costosos.</p>
+      </div>
+    </div>
+  </section>
 
-        <div class="hero__media fade-in delay-1">
-          <div class="frame">
-            <!-- Imagen representativa del sistema -->
-            <img src="https://images.unsplash.com/photo-1611224923853-80b023f02d71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Sistema para automatizar tus ingresos con IA" />
-          </div>
-          <p class="note">Sistema probado que funciona desde el primer día</p>
+  <!-- Steps Section -->
+  <section class="container">
+    <h2 class="section-title">Comienza en 3 Pasos</h2>
+    <p class="section-subtitle">Sistema simplificado para acción inmediata</p>
+    
+    <div class="steps">
+      <div class="step">
+        <div class="step-number">1</div>
+        <h3 class="step-title">Acceso Inmediato</h3>
+        <p class="step-description">Recibe acceso al sistema completo después de contactarnos por WhatsApp.</p>
+      </div>
+      
+      <div class="step">
+        <div class="step-number">2</div>
+        <h3 class="step-title">Configuración Rápida</h3>
+        <p class="step-description">Sigue nuestra guía paso a paso para configurar tu sistema en menos de 1 hora.</p>
+      </div>
+      
+      <div class="step">
+        <div class="step-number">3</div>
+        <h3 class="step-title">Primeros Resultados</h3>
+        <p class="step-description">Comienza a ver resultados desde la primera semana con nuestro método probado.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="container">
+    <div class="cta-section">
+      <h2 class="cta-title">¿Listo Para Automatizar Tus Ingresos?</h2>
+      <p class="cta-text">Únete a cientos de personas que ya están generando ingresos pasivos con nuestro sistema. Acceso inmediato, soporte personalizado y resultados garantizados.</p>
+      <a href="https://wa.link/kbjaz7" target="_blank" class="cta-large-button">
+        <i class="fab fa-whatsapp"></i>
+        Obtener Acceso Ahora
+      </a>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="container">
+    <h2 class="section-title">Preguntas Frecuentes</h2>
+    
+    <div class="faq">
+      <div class="faq-item">
+        <div class="faq-question">
+          ¿Necesito experiencia previa?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          No, el sistema está diseñado para principiantes. Te guiamos paso a paso desde cero.
         </div>
       </div>
-    </section>
-
-    <!-- Sección de beneficios -->
-    <section class="section" id="beneficios">
-      <div class="container">
-        <h2 class="fade-in">¿Qué vas a lograr con este sistema?</h2>
-        <p class="sub" style="text-align: center; max-width: 800px; margin: 0 auto 20px;">
-          Un método completo que combina lo último en inteligencia artificial con estrategias probadas de automatización
-        </p>
-        
-        <div class="cards">
-          <article class="card fade-in delay-1">
-            <h3><i class="fas fa-video"></i> Contenido que vende</h3>
-            <p>Ideas y estructura para videos cortos que generan atención y prospectos de forma orgánica. Aprende a crear contenido viral incluso si nunca has editado un video.</p>
-          </article>
-          
-          <article class="card fade-in delay-2">
-            <h3><i class="fas fa-robot"></i> IA sin complicarte</h3>
-            <p>Herramientas y prompts específicos para acelerar creación y edición. Usa la inteligencia artificial a tu favor sin necesidad de ser un experto en tecnología.</p>
-          </article>
-          
-          <article class="card fade-in delay-3">
-            <h3><i class="fas fa-cogs"></i> Automatización inteligente</h3>
-            <p>Flujo simple para captar, responder y dar seguimiento automático. Duplica tu tiempo liberándote de tareas repetitivas.</p>
-          </article>
+      
+      <div class="faq-item">
+        <div class="faq-question">
+          ¿Cuánto tiempo requiere?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          Solo 1-2 horas al día son suficientes. El sistema trabaja automáticamente por ti.
         </div>
       </div>
-    </section>
-
-    <!-- Sección de CTA final -->
-    <section class="section section--dark" id="cta-final">
-      <div class="container form__grid">
-        <div class="fade-in">
-          <h2>Descubre y empieza a ganar ahora</h2>
-          <p class="sub">
-            Si estás listo para aprender el sistema y recibir guía personalizada, toca el botón y te atiendo por WhatsApp directamente.
-          </p>
-
-          <ul class="bullets">
-            <li><i class="fas fa-check"></i> Te explico el sistema completo en 2–3 minutos</li>
-            <li><i class="fas fa-check"></i> Te muestro qué hacer hoy mismo para empezar</li>
-            <li><i class="fas fa-check"></i> Resuelvo todas tus dudas personalmente</li>
-            <li><i class="fas fa-check"></i> Acceso inmediato al material y herramientas</li>
-            <li><i class="fas fa-check"></i> Soporte continuo durante tu implementación</li>
-          </ul>
-
-          <p class="mini">
-            <i class="fas fa-clock"></i> ⏳ Respondo por orden de mensaje. Escríbeme ahora para asegurar tu lugar.
-          </p>
+      
+      <div class="faq-item">
+        <div class="faq-question">
+          ¿Es realmente desde mi celular?
+          <span class="faq-icon">+</span>
         </div>
-
-        <div class="formBox fade-in delay-1">
-          <h3>Atención directa por WhatsApp</h3>
-          <p class="sub">
-            Entra directo al chat y escribe: <strong>"EMPEZAR"</strong> para recibir atención inmediata
-          </p>
-
-          <!-- Botón principal de WhatsApp -->
-          <a class="btn btn--whatsapp btn--full" href="https://wa.link/kbjaz7" target="_blank" rel="noopener">
-            <i class="fab fa-whatsapp"></i> ✅ Sí, quiero comenzar ahora
-          </a>
-
-          <div style="margin: 20px 0; display: flex; align-items: center; justify-content: center; gap: 10px;">
-            <div style="height: 1px; background: var(--line); flex-grow: 1;"></div>
-            <span style="color: var(--muted); font-size: 14px;">o también</span>
-            <div style="height: 1px; background: var(--line); flex-grow: 1;"></div>
-          </div>
-
-          <!-- Botón alternativo -->
-          <a class="btn btn--primary btn--full" href="https://wa.link/kbjaz7" target="_blank" rel="noopener">
-            <i class="fas fa-comment-alt"></i> Hablar con AiViralElTigre
-          </a>
-
-          <p class="fine">
-            <i class="fas fa-lightbulb"></i> Consejo: mientras más rápido me escribas, más rápido te muestro el paso a paso.
-          </p>
+        <div class="faq-answer">
+          Sí, todo el proceso se gestiona desde tu dispositivo móvil. No necesitas computadora.
         </div>
       </div>
-    </section>
-
-    <!-- Sección de preguntas frecuentes -->
-    <section class="section" id="faq">
-      <div class="container">
-        <h2 class="fade-in">Preguntas frecuentes</h2>
-        <p class="sub" style="text-align: center; max-width: 700px; margin: 0 auto 30px;">
-          Resolvemos tus dudas más comunes sobre el sistema
-        </p>
-        
-        <div class="faq">
-          <details class="fade-in delay-1">
-            <summary>¿Necesito experiencia previa o conocimientos técnicos?</summary>
-            <p>No. El sistema está diseñado específicamente para empezar desde cero, con pasos claros y herramientas fáciles de usar. Solo necesitas compromiso y seguir el método.</p>
-          </details>
-          
-          <details class="fade-in delay-2">
-            <summary>¿Cuánto tiempo toma ver resultados?</summary>
-            <p>Empiezas hoy mismo con las primeras acciones. La mayoría de nuestros usuarios ven sus primeros resultados en la primera semana. Lo importante es seguir el sistema de forma constante.</p>
-          </details>
-          
-          <details class="fade-in delay-3">
-            <summary>¿Cómo empiezo exactamente?</summary>
-            <p>Presiona "Comenzar ahora", entra a WhatsApp directo conmigo (AiViralElTigre) y escribe <strong>EMPEZAR</strong>. Te guío personalmente desde el primer paso.</p>
-          </details>
-          
-          <details class="fade-in delay-3">
-            <summary>¿Qué necesito para empezar?</summary>
-            <p>Solo necesitas un celular con acceso a internet. Todo el proceso se puede realizar desde tu dispositivo móvil sin necesidad de computadora.</p>
-          </details>
+      
+      <div class="faq-item">
+        <div class="faq-question">
+          ¿Cómo obtengo acceso?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          Simplemente contáctanos por WhatsApp y te daremos acceso inmediato al sistema completo.
         </div>
       </div>
-    </section>
-  </main>
+    </div>
+  </section>
 
   <!-- Footer -->
-  <footer class="footer">
-    <div class="container footer__inner">
-      <span>© <span id="y"></span> AiViralElTigre - Sistema de Automatización con IA</span>
-      <a target="_blank" rel="noopener" href="https://wa.link/kbjaz7">
-        <i class="fab fa-whatsapp"></i> Contactar por WhatsApp
+  <footer>
+    <div class="container">
+      <div class="footer-logo">AiViralElTigre</div>
+      <p class="footer-text">Sistema de automatización de ingresos con IA. Resultados probados, soporte personalizado.</p>
+      <a href="https://wa.link/kbjajz7" target="_blank" class="cta-button">
+        <i class="fab fa-whatsapp"></i>
+        Contactar por WhatsApp
       </a>
     </div>
   </footer>
 
+  <!-- WhatsApp Float Button -->
+  <a href="https://wa.link/kbjaz7" target="_blank" class="whatsapp-float">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
   <script>
-    // Año actual en el footer
-    document.getElementById('y').textContent = new Date().getFullYear();
+    // Video Controls
+    const video = document.getElementById('hero-video');
+    const playButton = document.getElementById('play-button');
     
-    // Efecto de aparición al hacer scroll
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
+    playButton.addEventListener('click', function() {
+      if (video.paused) {
+        video.play();
+        video.muted = false;
+        playButton.innerHTML = '<i class="fas fa-pause"></i>';
+        playButton.style.opacity = '0.7';
+      } else {
+        video.pause();
+        playButton.innerHTML = '<i class="fas fa-play"></i>';
+        playButton.style.opacity = '1';
+      }
+    });
     
+    // Auto-play video when it's partially visible
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('fade-in');
+          video.play();
+          video.muted = true;
+          playButton.style.opacity = '0.7';
         }
       });
-    }, observerOptions);
+    }, { threshold: 0.5 });
     
-    // Observar elementos con la clase fade-in
-    document.querySelectorAll('.fade-in').forEach((el) => {
-      observer.observe(el);
+    observer.observe(video);
+    
+    // FAQ Toggle
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    faqItems.forEach(item => {
+      const question = item.querySelector('.faq-question');
+      
+      question.addEventListener('click', () => {
+        // Close other items
+        faqItems.forEach(otherItem => {
+          if (otherItem !== item && otherItem.classList.contains('active')) {
+            otherItem.classList.remove('active');
+          }
+        });
+        
+        // Toggle current item
+        item.classList.toggle('active');
+      });
     });
     
-    // Contador de confianza (efecto visual)
-    const trustItems = document.querySelectorAll('.trust__item');
-    trustItems.forEach((item, index) => {
-      item.style.opacity = '0';
-      item.style.transform = 'translateY(10px)';
+    // Animate elements on scroll
+    const animateOnScroll = () => {
+      const elements = document.querySelectorAll('.benefit-card, .step');
       
-      setTimeout(() => {
-        item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-        item.style.opacity = '1';
-        item.style.transform = 'translateY(0)';
-      }, 300 + (index * 200));
+      elements.forEach(element => {
+        const elementPosition = element.getBoundingClientRect().top;
+        const screenPosition = window.innerHeight / 1.2;
+        
+        if (elementPosition < screenPosition) {
+          element.style.opacity = '1';
+          element.style.transform = 'translateY(0)';
+        }
+      });
+    };
+    
+    // Set initial state for animation
+    document.querySelectorAll('.benefit-card, .step').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    });
+    
+    window.addEventListener('scroll', animateOnScroll);
+    window.addEventListener('load', animateOnScroll);
+    
+    // WhatsApp click tracking
+    document.querySelectorAll('a[href*="wa.link"]').forEach(link => {
+      link.addEventListener('click', function() {
+        // You can add analytics here
+        console.log('WhatsApp link clicked: ' + this.href);
+      });
     });
   </script>
 </body>
