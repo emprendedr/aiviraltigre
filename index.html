@@ -150,8 +150,58 @@
     .card > *{ position:relative; z-index:1; }
 
     .hero-left{
-      padding: 34px 30px 30px;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
     }
+
+    /* Hero Image Section */
+    .hero-image-container {
+      position: relative;
+      height: 320px;
+      overflow: hidden;
+      border-bottom: 1px solid var(--stroke);
+    }
+    .hero-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.9) contrast(1.1);
+    }
+    .hero-image-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 0%, rgba(7,7,18,0.7) 70%, rgba(7,7,18,0.9) 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 30px;
+    }
+    .hero-hook {
+      font-size: 2.2rem;
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 15px;
+      background: linear-gradient(135deg, #ffffff 0%, var(--accent) 50%, #ffffff 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+    .hero-subhook {
+      font-size: 1.1rem;
+      color: var(--accent2);
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .hero-content {
+      padding: 30px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
     .badge{
       display:inline-flex;
       align-items:center;
@@ -165,15 +215,18 @@
       letter-spacing:.4px;
       text-transform:uppercase;
       font-size:.78rem;
+      margin-bottom: 20px;
+      align-self: flex-start;
     }
     .badge i{ color: var(--accent); }
 
     h1{
-      margin-top: 16px;
-      font-size: clamp(2rem, 3.4vw, 3.1rem);
+      margin-top: 0;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
       line-height:1.05;
       font-weight: 900;
       letter-spacing:-.8px;
+      margin-bottom: 15px;
     }
     .grad{
       background: linear-gradient(135deg, #fff 0%, var(--accent) 55%, #fff 100%);
@@ -182,17 +235,19 @@
       color:transparent;
     }
     .sub{
-      margin-top: 14px;
+      margin-top: 0;
       color: var(--muted);
       font-size: 1.05rem;
       line-height:1.55;
       max-width: 54ch;
+      margin-bottom: 25px;
     }
 
     .benefits{
-      margin-top: 22px;
+      margin-top: 0;
       display:grid;
       gap:12px;
+      margin-bottom: 25px;
     }
     .benefit{
       display:flex;
@@ -218,46 +273,31 @@
       font-size:.98rem;
     }
 
-    .actions{
-      margin-top: 18px;
-      display:flex;
-      gap: 12px;
-      flex-wrap:wrap;
-    }
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-      padding: 14px 16px;
+    .cta-button {
+      margin-top: auto;
+      padding: 18px;
       border-radius: 14px;
-      border:1px solid var(--stroke);
-      text-decoration:none;
-      font-weight:900;
-      transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
-      cursor:pointer;
-      user-select:none;
-    }
-    .btn:active{ transform: translateY(1px); }
-    .btn-primary{
+      border: none;
       background: linear-gradient(135deg, var(--wa), var(--wa2));
-      color:#fff;
-      border-color: rgba(37,211,102,.35);
-      box-shadow: 0 14px 40px rgba(37,211,102,.22);
+      color: white;
+      font-weight: 900;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      width: 100%;
     }
-    .btn-primary:hover{
+    .cta-button:hover {
       transform: translateY(-2px);
-      box-shadow: 0 18px 55px rgba(37,211,102,.30);
+      box-shadow: 0 20px 50px rgba(37,211,102,.35);
     }
-    .btn-ghost{
-      background: rgba(255,255,255,.06);
-      color: var(--text);
-    }
-    .btn-ghost:hover{ transform: translateY(-2px); }
 
     /* Video card */
     .video-card .head{
-      padding: 18px 18px 14px;
+      padding: 20px;
       display:flex;
       align-items:center;
       justify-content:center;
@@ -266,10 +306,12 @@
       background: linear-gradient(135deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
     }
     .video-card .head h3{
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       font-weight:900;
       color: var(--accent2);
       text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
     .video-card .head p{
       display: none;
@@ -562,11 +604,23 @@
       .hero{ grid-template-columns: 1fr; }
       .wrap{ padding-top: 88px; }
       .steps{ grid-template-columns: repeat(2, 1fr); }
+      .hero-image-container {
+        height: 250px;
+      }
     }
     @media (max-width: 520px){
       .steps{ grid-template-columns: 1fr; }
-      .hero-left{ padding: 28px 18px 18px; }
+      .hero-left{ padding: 0; }
       .name-popup { padding: 20px; }
+      .hero-image-container {
+        height: 200px;
+      }
+      .hero-hook {
+        font-size: 1.8rem;
+      }
+      .hero-content {
+        padding: 20px;
+      }
     }
 
     /* Reduce motion */
@@ -597,47 +651,53 @@
     <section class="hero">
       <!-- LEFT CONTENT -->
       <div class="card hero-left">
-        <span class="badge"><i class="fa-solid fa-bolt"></i> Acceso Limitado</span>
-
-        <h1 class="grad">Clase Exclusiva: <br/>IA + Redes Sociales = Ingresos Automáticos</h1>
-
-        <p class="sub">
-          Descubre el sistema probado que combina inteligencia artificial con estrategias de redes sociales para crear ingresos automatizados. Acceso restringido a participantes verificados.
-        </p>
-
-        <div class="benefits" role="list">
-          <div class="benefit" role="listitem">
-            <i class="fa-solid fa-brain"></i>
-            <div>
-              <b>IA para Contenido Viral</b>
-              <p>Herramientas de inteligencia artificial que crean contenido atractivo en minutos.</p>
-            </div>
-          </div>
-
-          <div class="benefit" role="listitem">
-            <i class="fa-solid fa-robot"></i>
-            <div>
-              <b>Automatización Completa</b>
-              <p>Sistema que publica, interactúa y escala automáticamente 24/7.</p>
-            </div>
-          </div>
-
-          <div class="benefit" role="listitem">
-            <i class="fa-solid fa-money-bill-trend-up"></i>
-            <div>
-              <b>Flujos de Ingresos</b>
-              <p>Múltiples estrategias para monetizar audiencia automáticamente.</p>
-            </div>
+        <!-- Hero Image with Hook -->
+        <div class="hero-image-container">
+          <img src="https://raw.githubusercontent.com/emprendedr/aiviraltigre/main/F1FDEEFE-F465-420D-9E04-62F9422CFC6E.png" alt="Sistema de IA y Redes Sociales" class="hero-image">
+          <div class="hero-image-overlay">
+            <div class="hero-hook">¿CANSADO DE TRABAJAR Y NO VER RESULTADOS?</div>
+            <div class="hero-subhook">Descubre el Sistema que Cambió Todo para Miles</div>
           </div>
         </div>
+        
+        <!-- Content Below Image -->
+        <div class="hero-content">
+          <span class="badge"><i class="fa-solid fa-bolt"></i> Acceso Limitado</span>
 
-        <div class="actions">
-          <button class="btn btn-primary" id="playVideoBtn">
-            <i class="fa-solid fa-play-circle"></i> Ver Introducción Ahora
-          </button>
+          <h1 class="grad">El Secreto que las Grandes Marcas No Quieren que Sepas</h1>
 
-          <button class="btn btn-ghost" id="skipToAccess" type="button">
-            <i class="fa-solid fa-forward-fast"></i> Solicitar Acceso Directo
+          <p class="sub">
+            Mientras tú trabajas horas interminables, otros están usando IA y automatización para generar ingresos pasivos. Esta clase exclusiva te muestra exactamente cómo.
+          </p>
+
+          <div class="benefits" role="list">
+            <div class="benefit" role="listitem">
+              <i class="fa-solid fa-brain"></i>
+              <div>
+                <b>IA que Trabaja por Ti</b>
+                <p>Herramientas que crean contenido viral mientras tú duermes.</p>
+              </div>
+            </div>
+
+            <div class="benefit" role="listitem">
+              <i class="fa-solid fa-robot"></i>
+              <div>
+                <b>Automatización Completa</b>
+                <p>Sistema 24/7 que escala sin tu intervención constante.</p>
+              </div>
+            </div>
+
+            <div class="benefit" role="listitem">
+              <i class="fa-solid fa-money-bill-trend-up"></i>
+              <div>
+                <b>Resultados Reales</b>
+                <p>Estrategias comprobadas que están funcionando ahora mismo.</p>
+              </div>
+            </div>
+          </div>
+
+          <button class="cta-button" id="playVideoBtn">
+            <i class="fa-solid fa-play-circle"></i> VER AHORA - ACCESO RESTRINGIDO
           </button>
         </div>
       </div>
@@ -646,7 +706,7 @@
       <div class="card video-card" id="videoCard">
         <div class="head">
           <div>
-            <h3>🔒 CONTENIDO EXCLUSIVO - REGISTRO REQUERIDO</h3>
+            <h3>🎬 CONTENIDO QUE CAMBIA TODO - TU VIDEO COMIENZA ABAJO</h3>
           </div>
         </div>
 
@@ -657,13 +717,12 @@
               <div style="width: 100px; height: 100px; border-radius: 50%; background: rgba(245,158,11,.15); border: 3px solid rgba(245,158,11,.3); display: grid; place-items: center; margin: 0 auto 25px; font-size: 2.5rem; color: var(--accent);">
                 <i class="fa-solid fa-lock"></i>
               </div>
-              <h3 style="font-size: 1.6rem; margin-bottom: 15px; color: var(--accent2);">Acceso Restringido</h3>
+              <h3 style="font-size: 1.6rem; margin-bottom: 15px; color: var(--accent2);">¿Te Gustó lo que Viste?</h3>
               <p style="color: var(--muted); line-height: 1.6; margin-bottom: 25px; font-size: 1.1rem;">
-                Para continuar viendo esta clase exclusiva, necesitamos verificar tu identidad. 
-                Ingresa tu nombre completo para acceder inmediatamente.
+                Los 2 minutos que acabas de ver son solo una muestra. Para acceder a los <strong>43 minutos restantes</strong> de esta clase que cambia vidas, necesitamos verificar tu identidad.
               </p>
               <button id="showPopupBtn" style="padding: 15px 30px; border-radius: 12px; background: linear-gradient(135deg, var(--accent), var(--accent2)); color: white; border: none; font-weight: 900; font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; margin: 0 auto;">
-                <i class="fa-solid fa-unlock"></i> Ingresar Mi Nombre
+                <i class="fa-solid fa-unlock"></i> CONTINUAR VIENDO CLASE COMPLETA
               </button>
             </div>
           </div>
@@ -672,44 +731,44 @@
         <div class="timer" aria-live="polite">
           <div><i class="fa-regular fa-clock"></i> <strong id="timeText">0:00</strong></div>
           <div class="progress" aria-label="Progreso del video"><div class="bar" id="bar"></div></div>
-          <div><span id="unlockText">Acceso en 2:00</span></div>
+          <div><span id="unlockText">Acceso Completo en 2:00</span></div>
         </div>
       </div>
     </section>
 
     <!-- STEPS -->
     <section class="section">
-      <div class="section-title">Lo que Aprenderás en Esta Clase</div>
+      <div class="section-title">Lo que Descubrirás en los Próximos 43 Minutos</div>
 
       <div class="steps">
         <div class="step">
           <div class="top"><span class="num">1</span><i class="fa-solid fa-brain"></i></div>
           <b>IA para Contenido</b>
-          <p>Herramientas secretas de IA que pocos conocen.</p>
+          <p>Las herramientas exactas que uso para crear contenido automáticamente.</p>
         </div>
 
         <div class="step">
           <div class="top"><span class="num">2</span><i class="fa-solid fa-robot"></i></div>
           <b>Automatización Total</b>
-          <p>Sistema que trabaja por ti las 24 horas.</p>
+          <p>Configuración paso a paso del sistema que trabaja 24/7 por mí.</p>
         </div>
 
         <div class="step">
           <div class="top"><span class="num">3</span><i class="fa-solid fa-chart-line"></i></div>
           <b>Crecimiento Exponencial</b>
-          <p>Tácticas para multiplicar tu audiencia rápidamente.</p>
+          <p>Cómo multiplicar audiencia sin gastar en anuncios costosos.</p>
         </div>
 
         <div class="step">
           <div class="top"><span class="num">4</span><i class="fa-solid fa-money-bill-wave"></i></div>
           <b>Monetización Inteligente</b>
-          <p>Convertir tráfico en ingresos de forma automática.</p>
+          <p>Los 3 flujos de ingreso que generan dinero desde el día 1.</p>
         </div>
 
         <div class="step">
           <div class="top"><span class="num">5</span><i class="fa-solid fa-rocket"></i></div>
           <b>Escalabilidad</b>
-          <p>Cómo duplicar resultados sin duplicar trabajo.</p>
+          <p>Cómo dupliqué mis resultados en 30 días sin trabajar más.</p>
         </div>
       </div>
     </section>
@@ -724,7 +783,7 @@
         <i class="fa-solid fa-user-check"></i>
       </div>
       <h2 class="popup-title">¡Perfecto! Un Último Paso</h2>
-      <p class="popup-subtitle">Ingresa tu nombre completo para acceder a la clase hoy mismo</p>
+      <p class="popup-subtitle">Ingresa tu nombre completo para acceder a los 43 minutos restantes de la clase</p>
     </div>
     
     <div class="name-input-container">
@@ -736,15 +795,15 @@
     
     <div class="popup-buttons">
       <button class="popup-btn popup-btn-primary" id="accessWhatsAppBtn">
-        <i class="fa-brands fa-whatsapp"></i> Acceder a Clase por WhatsApp
+        <i class="fa-brands fa-whatsapp"></i> ACCEDER A CLASE COMPLETA
       </button>
       <button class="popup-btn popup-btn-secondary" id="closePopupBtn">
-        <i class="fa-solid fa-times"></i> Cancelar
+        <i class="fa-solid fa-times"></i> Prefiero No Saber
       </button>
     </div>
     
     <div class="popup-note">
-      <i class="fa-solid fa-info-circle"></i> Serás redirigido a WhatsApp donde recibirás acceso inmediato
+      <i class="fa-solid fa-info-circle"></i> Serás redirigido a WhatsApp donde recibirás acceso inmediato a toda la clase
     </div>
   </div>
 
@@ -785,7 +844,6 @@
       
       // Elementos del DOM
       const playVideoBtn = document.getElementById("playVideoBtn");
-      const skipToAccessBtn = document.getElementById("skipToAccess");
       const videoOverlay = document.getElementById("videoOverlay");
       const showPopupBtn = document.getElementById("showPopupBtn");
       const popupOverlay = document.getElementById("popupOverlay");
@@ -919,9 +977,9 @@
             // Actualizar texto de desbloqueo
             const timeLeft = BLOCK_AT_SECONDS - currentTime;
             if (timeLeft > 0) {
-              unlockText.textContent = `Acceso en ${formatTime(timeLeft)}`;
+              unlockText.textContent = `Clase Completa en ${formatTime(timeLeft)}`;
             } else {
-              unlockText.textContent = 'Registro Requerido ✅';
+              unlockText.textContent = '¡Continúa Viendo! ✅';
               
               // Mostrar popup a los 2 minutos si no se ha mostrado
               if (currentTime >= BLOCK_AT_SECONDS && !popupShown) {
@@ -939,12 +997,6 @@
           timeInterval = null;
         }
       }
-      
-      // Ir directo al acceso
-      skipToAccessBtn.addEventListener('click', function() {
-        showNamePopup();
-        document.getElementById("videoCard").scrollIntoView({behavior: 'smooth'});
-      });
       
       // Mostrar popup desde overlay
       showPopupBtn.addEventListener('click', showNamePopup);
