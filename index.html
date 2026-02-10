@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aiviralsystem | Sistema Comprobado para Crear y Convertir</title>
-  <meta name="description" content="Acceso restringido. Sistema probado para crear contenido, automatizar y generar ingresos. Registro requerido." />
+  <title>Aiviralsystem | Sistema de IA, Redes Sociales y Automatización de Ingresos</title>
+  <meta name="description" content="Descubre cómo crear contenido con IA, automatizar redes sociales y generar ingresos. Acceso restringido a clase completa." />
   
   <!-- Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
@@ -15,9 +15,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   
   <!-- Open Graph -->
-  <meta property="og:title" content="Aiviralsystem - Sistema Comprobado">
-  <meta property="og:description" content="Acceso restringido a contenido exclusivo. Sistema para crear, automatizar y convertir.">
-  <meta property="og:image" content="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80">
+  <meta property="og:title" content="Aiviralsystem - IA, Redes Sociales y Automatización">
+  <meta property="og:description" content="Accede a la clase completa sobre IA, redes sociales y automatización de ingresos. Registro requerido.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1611224923853-80b023f02d71?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80">
   <meta property="og:url" content="https://aiviralsystem.com">
   <meta property="og:type" content="website">
 
@@ -262,112 +262,90 @@
     }
     .btn-ghost:hover{ transform: translateY(-2px); }
 
-    /* Video Preview Card */
-    .video-preview-card {
-      background: linear-gradient(180deg, rgba(16,16,38,.95), rgba(10,10,26,.92));
-      border: 2px solid rgba(245,158,11,.25);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-      position: relative;
-      text-align: center;
-      padding: 40px 30px;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+    /* Video card */
+    .video-card .head{
+      padding: 18px 18px 14px;
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:10px;
+      border-bottom:1px solid var(--stroke);
+      background: linear-gradient(135deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
     }
-    .video-preview-card::before {
-      content: "";
+    .video-card .head h3{
+      font-size: 1.05rem;
+      font-weight:900;
+    }
+    .video-card .head p{
+      color: var(--muted);
+      font-size:.9rem;
+      margin-top:6px;
+    }
+    .hint{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      background: rgba(245,158,11,.10);
+      border: 1px solid rgba(245,158,11,.25);
+      color: var(--accent2);
+      font-weight:900;
+      font-size:.82rem;
+      white-space:nowrap;
+    }
+
+    .video-wrap{
+      position:relative;
+      width:100%;
+      padding-bottom: 56.25%;
+      background:#000;
+    }
+    #yt{
+      position:absolute; inset:0;
+      width:100%; height:100%;
+      border:0;
+    }
+    .video-overlay {
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at 30% 30%, rgba(245,158,11,.08), transparent 50%),
-                  radial-gradient(circle at 70% 70%, rgba(37,211,102,.05), transparent 50%);
-      pointer-events: none;
-    }
-    .lock-icon {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, rgba(245,158,11,.15), rgba(245,158,11,.05));
-      border: 2px solid rgba(245,158,11,.3);
-      display: grid;
-      place-items: center;
-      margin: 0 auto 25px;
-      font-size: 2rem;
-      color: var(--accent);
-    }
-    .preview-title {
-      font-size: 1.6rem;
-      font-weight: 900;
-      margin-bottom: 15px;
-      color: var(--accent2);
-    }
-    .preview-text {
-      color: var(--muted);
-      line-height: 1.6;
-      margin-bottom: 30px;
-      font-size: 1.05rem;
-    }
-    .access-steps {
-      display: flex;
+      background: rgba(0, 0, 0, 0.85);
+      display: none;
       flex-direction: column;
-      gap: 15px;
-      margin: 25px 0;
-      text-align: left;
+      justify-content: center;
+      align-items: center;
+      padding: 30px;
+      z-index: 10;
     }
-    .access-step {
+    .video-overlay.active {
       display: flex;
-      gap: 15px;
-      align-items: flex-start;
-      padding: 15px;
-      background: rgba(255,255,255,.03);
-      border: 1px solid var(--stroke);
-      border-radius: 12px;
     }
-    .access-step .step-num {
-      width: 32px;
-      height: 32px;
-      border-radius: 8px;
-      background: linear-gradient(135deg, rgba(245,158,11,.15), rgba(37,211,102,.1));
-      border: 1px solid rgba(245,158,11,.25);
-      display: grid;
-      place-items: center;
-      font-weight: 900;
-      color: var(--accent2);
-      flex-shrink: 0;
-    }
-    .access-step .step-content {
-      flex: 1;
-    }
-    .access-step .step-content b {
-      display: block;
-      margin-bottom: 5px;
-      color: var(--text);
-    }
-    .access-step .step-content p {
+    .timer{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding: 14px 16px;
+      border-top:1px solid var(--stroke);
       color: var(--muted);
-      font-size: 0.95rem;
-      line-height: 1.4;
+      font-weight:700;
+      background: rgba(0,0,0,.18);
     }
-    .limited-access {
-      background: linear-gradient(135deg, rgba(245,158,11,.1), rgba(245,158,11,.05));
-      border: 1px solid rgba(245,158,11,.2);
-      border-radius: 12px;
-      padding: 15px;
-      margin: 25px 0;
-      text-align: center;
+    .timer strong{ color: var(--accent2); }
+    .progress{
+      flex:1;
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.10);
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.10);
     }
-    .limited-access b {
-      color: var(--accent2);
-      display: block;
-      margin-bottom: 8px;
-      font-size: 1.1rem;
-    }
-    .limited-access p {
-      color: var(--muted);
-      font-size: 0.95rem;
-      line-height: 1.4;
+    .bar{
+      width:0%;
+      height:100%;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      border-radius: 999px;
+      transition: width .25s ease;
     }
 
     /* Steps */
@@ -410,74 +388,96 @@
     .step b{ font-weight: 900; display:block; margin-bottom:6px; }
     .step p{ color: var(--muted); font-size:.92rem; line-height:1.35; }
 
-    /* Registration Form */
-    .registration-form {
-      max-width: 500px;
-      margin: 40px auto;
-      padding: 40px 30px;
-      background: linear-gradient(180deg, rgba(16,16,38,.95), rgba(8,8,20,.95));
-      border: 1px solid var(--stroke);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      text-align: center;
+    /* Name Popup */
+    .name-popup {
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: min(500px, 90vw);
+      background: linear-gradient(180deg, rgba(16,16,38,.98), rgba(8,8,20,.98));
+      border: 2px solid rgba(245,158,11,.35);
+      border-radius: 24px;
+      box-shadow: 0 30px 80px rgba(0,0,0,.75);
+      padding: 30px;
+      z-index: 2001;
+      display: none;
     }
-    .form-title {
+    .name-popup.active {
+      display: block;
+      animation: popupIn 0.3s ease;
+    }
+    @keyframes popupIn {
+      0% { opacity: 0; transform: translate(-50%, -50%) scale(0.9); }
+      100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    }
+    .popup-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(5px);
+      z-index: 2000;
+      display: none;
+    }
+    .popup-overlay.active {
+      display: block;
+    }
+    .popup-header {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+    .popup-icon {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(245,158,11,.15), rgba(37,211,102,.1));
+      border: 2px solid rgba(245,158,11,.3);
+      display: grid;
+      place-items: center;
+      margin: 0 auto 20px;
+      font-size: 1.8rem;
+      color: var(--accent);
+    }
+    .popup-title {
       font-size: 1.8rem;
       font-weight: 900;
-      margin-bottom: 15px;
+      margin-bottom: 10px;
       color: var(--accent2);
     }
-    .form-subtitle {
+    .popup-subtitle {
       color: var(--muted);
-      margin-bottom: 30px;
+      font-size: 1.05rem;
       line-height: 1.5;
     }
-    .form-input-group {
-      margin-bottom: 20px;
-      text-align: left;
+    .name-input-container {
+      margin: 25px 0;
     }
-    .form-input-group label {
-      display: block;
-      margin-bottom: 8px;
-      color: var(--text);
-      font-weight: 600;
-    }
-    .form-input {
+    .name-input {
       width: 100%;
-      padding: 16px 20px;
+      padding: 18px 20px;
       border-radius: 14px;
       border: 1px solid var(--stroke);
       background: rgba(255,255,255,.05);
       color: var(--text);
-      font-size: 1rem;
-      transition: border-color 0.3s ease;
+      font-size: 1.1rem;
+      text-align: center;
+      transition: all 0.3s ease;
     }
-    .form-input:focus {
+    .name-input:focus {
       outline: none;
       border-color: var(--accent);
       background: rgba(255,255,255,.08);
+      box-shadow: 0 0 0 3px rgba(245,158,11,.15);
     }
-    .form-agreement {
-      margin: 25px 0;
-      text-align: left;
-      font-size: 0.9rem;
-      color: var(--muted);
-      line-height: 1.5;
+    .popup-buttons {
+      display: grid;
+      gap: 15px;
+      margin-top: 25px;
     }
-    .form-agreement a {
-      color: var(--accent2);
-      text-decoration: none;
-    }
-    .form-agreement a:hover {
-      text-decoration: underline;
-    }
-    .form-btn {
-      width: 100%;
+    .popup-btn {
       padding: 18px;
       border-radius: 14px;
       border: none;
-      background: linear-gradient(135deg, var(--wa), var(--wa2));
-      color: white;
       font-weight: 900;
       font-size: 1.1rem;
       cursor: pointer;
@@ -485,17 +485,53 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
+      gap: 12px;
     }
-    .form-btn:hover {
+    .popup-btn-primary {
+      background: linear-gradient(135deg, var(--wa), var(--wa2));
+      color: white;
+    }
+    .popup-btn-primary:hover {
       transform: translateY(-2px);
     }
-    .form-note {
+    .popup-btn-secondary {
+      background: rgba(255,255,255,.08);
+      color: var(--text);
+    }
+    .popup-btn-secondary:hover {
+      background: rgba(255,255,255,.12);
+    }
+    .popup-note {
+      text-align: center;
       margin-top: 20px;
       color: var(--muted);
       font-size: 0.9rem;
       line-height: 1.4;
     }
+    .popup-note i {
+      color: var(--accent2);
+      margin-right: 8px;
+    }
+
+    /* WhatsApp floating */
+    .wa-float{
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      width: 64px;
+      height: 64px;
+      border-radius: 22px;
+      display:grid;
+      place-items:center;
+      text-decoration:none;
+      background: linear-gradient(135deg, var(--wa), var(--wa2));
+      color:#fff;
+      box-shadow: 0 18px 45px rgba(37,211,102,.25);
+      border:1px solid rgba(255,255,255,.12);
+      z-index: 1500;
+      transition: transform .15s ease;
+    }
+    .wa-float:hover{ transform: translateY(-3px); }
 
     /* Footer */
     .footer {
@@ -537,26 +573,6 @@
       font-size: 0.8rem;
     }
 
-    /* WhatsApp floating */
-    .wa-float{
-      position: fixed;
-      right: 18px;
-      bottom: 18px;
-      width: 64px;
-      height: 64px;
-      border-radius: 22px;
-      display:grid;
-      place-items:center;
-      text-decoration:none;
-      background: linear-gradient(135deg, var(--wa), var(--wa2));
-      color:#fff;
-      box-shadow: 0 18px 45px rgba(37,211,102,.25);
-      border:1px solid rgba(255,255,255,.12);
-      z-index: 1500;
-      transition: transform .15s ease;
-    }
-    .wa-float:hover{ transform: translateY(-3px); }
-
     /* Responsive */
     @media (max-width: 980px){
       .hero{ grid-template-columns: 1fr; }
@@ -566,12 +582,13 @@
     @media (max-width: 520px){
       .steps{ grid-template-columns: 1fr; }
       .hero-left{ padding: 28px 18px 18px; }
-      .registration-form { padding: 30px 20px; }
+      .name-popup { padding: 20px; }
     }
 
     /* Reduce motion */
     @media (prefers-reduced-motion: reduce){
       *{ transition:none !important; scroll-behavior:auto !important; }
+      .name-popup.active { animation: none; }
     }
   </style>
 </head>
@@ -582,8 +599,9 @@
     window.AIVIRALSYSTEM = {
       BRAND_NAME: "Aiviralsystem",
       WHATSAPP_LINK: "https://wa.link/kbjaz7",
-      WHATSAPP_TEXT: "Hola, acabo de registrarme en Aiviralsystem y quiero acceder al video completo y al sistema.",
-      REQUIRE_REGISTRATION: true
+      WHATSAPP_MESSAGE: "Hola, soy [NOMBRE], vengo de un anuncio y me gustaría tener acceso a la clase sobre la IA, redes sociales y automatización de ingresos.",
+      BLOCK_AT_SECONDS: 120, // 2 minutos
+      VIDEO_ID: "2bWD3uLcwss"
     };
   </script>
 
@@ -596,8 +614,8 @@
       </div>
 
       <div class="mini-cta">
-        <span class="pill"><i class="fa-solid fa-lock"></i> Acceso Restringido</span>
-        <span class="pill"><i class="fa-solid fa-shield"></i> Contenido Exclusivo</span>
+        <span class="pill"><i class="fa-solid fa-clock"></i> Acceso en 2:00</span>
+        <span class="pill"><i class="fa-solid fa-key"></i> Registro Necesario</span>
       </div>
     </div>
   </header>
@@ -606,12 +624,12 @@
     <section class="hero">
       <!-- LEFT CONTENT -->
       <div class="card hero-left">
-        <span class="badge"><i class="fa-solid fa-crown"></i> Sistema Exclusivo</span>
+        <span class="badge"><i class="fa-solid fa-bolt"></i> Clase Exclusiva</span>
 
-        <h1 class="grad">Acceso Restringido:<br/>Sistema Comprobado para Crear y Convertir</h1>
+        <h1 class="grad">IA + Redes Sociales = <br/>Automatización de Ingresos</h1>
 
         <p class="sub">
-          Este contenido es exclusivo para miembros registrados. El video completo y las herramientas del sistema están restringidas para proteger su valor.
+          Descubre cómo combinar inteligencia artificial con estrategias de redes sociales para crear un sistema automatizado que genere ingresos consistentes.
         </p>
 
         <div class="benefits" role="list">
@@ -619,185 +637,155 @@
             <i class="fa-solid fa-robot"></i>
             <div>
               <b>Contenido con IA</b>
-              <p>Guías exclusivas para crear contenido automático (solo para miembros).</p>
+              <p>Crea contenido viral en minutos sin ser experto en tecnología.</p>
             </div>
           </div>
 
           <div class="benefit" role="listitem">
-            <i class="fa-solid fa-gears"></i>
+            <i class="fa-solid fa-share-nodes"></i>
             <div>
-              <b>Automatización Total</b>
-              <p>Sistema 24/7 que trabaja por ti (acceso restringido a registrados).</p>
+              <b>Automatización de Redes</b>
+              <p>Sistema que publica, interactúa y crece tu audiencia automáticamente.</p>
             </div>
           </div>
 
           <div class="benefit" role="listitem">
-            <i class="fa-solid fa-chart-line"></i>
+            <i class="fa-solid fa-money-bill-trend-up"></i>
             <div>
-              <b>Conversión Comprobada</b>
-              <p>Estrategias que funcionan (disponible solo tras registro completo).</p>
+              <b>Ingresos Automatizados</b>
+              <p>Convierte tu audiencia en ingresos recurrentes con estrategias probadas.</p>
             </div>
           </div>
         </div>
 
         <div class="actions">
-          <a class="btn btn-primary" id="ctaWhatsApp" href="#registration">
-            <i class="fa-solid fa-user-plus"></i> Registrarme para Acceso
-          </a>
+          <button class="btn btn-primary" id="playVideoBtn">
+            <i class="fa-solid fa-play"></i> Ver Clase Introductoria
+          </button>
 
-          <button class="btn btn-ghost" id="scrollToPreview" type="button">
-            <i class="fa-solid fa-eye"></i> Ver Previsualización
+          <button class="btn btn-ghost" id="skipToAccess" type="button">
+            <i class="fa-solid fa-forward-fast"></i> Ir Directo al Acceso
           </button>
         </div>
       </div>
 
-      <!-- RIGHT - VIDEO PREVIEW -->
-      <div class="video-preview-card">
-        <div class="lock-icon">
-          <i class="fa-solid fa-lock"></i>
-        </div>
-        
-        <div class="preview-title">
-          Contenido Bloqueado
-        </div>
-        
-        <div class="preview-text">
-          El video completo del sistema está restringido para proteger su valor. Solo los miembros registrados pueden acceder al contenido completo.
-        </div>
-        
-        <div class="access-steps">
-          <div class="access-step">
-            <div class="step-num">1</div>
-            <div class="step-content">
-              <b>Registro Requerido</b>
-              <p>Completa el formulario con tus datos para verificar tu identidad.</p>
-            </div>
+      <!-- RIGHT - VIDEO -->
+      <div class="card video-card" id="videoCard">
+        <div class="head">
+          <div>
+            <h3>Clase Introductoria</h3>
+            <p>Al minuto <strong>2:00</strong> se abre acceso a la clase completa</p>
           </div>
-          
-          <div class="access-step">
-            <div class="step-num">2</div>
-            <div class="step-content">
-              <b>Acceso a Vista Previa</b>
-              <p>Verás los primeros 2 minutos del video como demostración del sistema.</p>
-            </div>
-          </div>
-          
-          <div class="access-step">
-            <div class="step-num">3</div>
-            <div class="step-content">
-              <b>Video Completo por WhatsApp</b>
-              <p>Para ver el video completo, debes solicitarlo por WhatsApp después del registro.</p>
-            </div>
-          </div>
+          <div class="hint"><i class="fa-solid fa-lock"></i> Acceso Restringido</div>
         </div>
-        
-        <div class="limited-access">
-          <b>⚠️ Acceso Limitado</b>
-          <p>Sin registro no podrás acceder al contenido. Esto protege la exclusividad del sistema.</p>
-        </div>
-        
-        <a class="btn btn-primary" href="#registration" style="width: 100%;">
-          <i class="fa-solid fa-unlock"></i> Desbloquear Acceso
-        </a>
-      </div>
-    </section>
 
-    <!-- REGISTRATION FORM -->
-    <section id="registration" class="section">
-      <div class="registration-form">
-        <div class="form-title">
-          <i class="fa-solid fa-user-shield"></i> Registro de Acceso
+        <div class="video-wrap">
+          <div id="yt"></div>
+          <div class="video-overlay" id="videoOverlay">
+            <div style="text-align: center; max-width: 400px;">
+              <div style="width: 80px; height: 80px; border-radius: 50%; background: rgba(245,158,11,.15); border: 2px solid rgba(245,158,11,.3); display: grid; place-items: center; margin: 0 auto 20px; font-size: 2rem; color: var(--accent);">
+                <i class="fa-solid fa-lock"></i>
+              </div>
+              <h3 style="font-size: 1.5rem; margin-bottom: 10px; color: var(--accent2);">Video Pausado</h3>
+              <p style="color: var(--muted); line-height: 1.5; margin-bottom: 20px;">Para continuar viendo la clase completa, ingresa tu nombre en el formulario que apareció.</p>
+              <button id="showPopupBtn" style="padding: 12px 24px; border-radius: 10px; background: linear-gradient(135deg, var(--accent), var(--accent2)); color: white; border: none; font-weight: 700; cursor: pointer;">
+                <i class="fa-solid fa-unlock"></i> Mostrar Formulario
+              </button>
+            </div>
+          </div>
         </div>
-        
-        <div class="form-subtitle">
-          Completa tus datos para verificar tu identidad y acceder a la previsualización del sistema.
+
+        <div class="timer" aria-live="polite">
+          <div><i class="fa-regular fa-clock"></i> <strong id="timeText">0:00</strong></div>
+          <div class="progress" aria-label="Progreso del video"><div class="bar" id="bar"></div></div>
+          <div><span id="unlockText">Acceso en 2:00</span></div>
         </div>
-        
-        <form id="registrationForm">
-          <div class="form-input-group">
-            <label for="fullName"><i class="fa-solid fa-user"></i> Nombre Completo</label>
-            <input type="text" id="fullName" class="form-input" placeholder="Ej: Juan Pérez" required>
-          </div>
-          
-          <div class="form-input-group">
-            <label for="email"><i class="fa-solid fa-envelope"></i> Correo Electrónico</label>
-            <input type="email" id="email" class="form-input" placeholder="tu@email.com" required>
-          </div>
-          
-          <div class="form-input-group">
-            <label for="phone"><i class="fa-solid fa-phone"></i> Teléfono (WhatsApp)</label>
-            <input type="tel" id="phone" class="form-input" placeholder="+52 123 456 7890" required>
-          </div>
-          
-          <div class="form-agreement">
-            <input type="checkbox" id="terms" required>
-            <label for="terms">
-              Acepto recibir información sobre el sistema y confirmo que he leído la 
-              <a href="#" id="privacyLink">Política de Privacidad</a>. Entiendo que el video completo debe ser solicitado por WhatsApp.
-            </label>
-          </div>
-          
-          <button type="submit" class="form-btn">
-            <i class="fa-solid fa-paper-plane"></i> Registrar y Solicitar Acceso
-          </button>
-          
-          <div class="form-note">
-            <i class="fa-solid fa-info-circle"></i> Tras el registro, recibirás instrucciones para acceder a la previsualización y solicitar el video completo por WhatsApp.
-          </div>
-        </form>
       </div>
     </section>
 
     <!-- STEPS -->
     <section class="section">
-      <div class="section-title">Proceso de Acceso Exclusivo</div>
+      <div class="section-title">Lo que Descubrirás en la Clase Completa</div>
 
       <div class="steps">
         <div class="step">
-          <div class="top"><span class="num">1</span><i class="fa-solid fa-user-check"></i></div>
-          <b>Registro</b>
-          <p>Completa el formulario con tus datos reales para verificación.</p>
+          <div class="top"><span class="num">1</span><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+          <b>Herramientas de IA</b>
+          <p>Las mejores herramientas para crear contenido automáticamente.</p>
         </div>
 
         <div class="step">
-          <div class="top"><span class="num">2</span><i class="fa-solid fa-eye"></i></div>
-          <b>Previsualización</b>
-          <p>Accede a los primeros 2 minutos del video del sistema.</p>
+          <div class="top"><span class="num">2</span><i class="fa-solid fa-gears"></i></div>
+          <b>Automatización</b>
+          <p>Cómo programar publicaciones e interacciones 24/7.</p>
         </div>
 
         <div class="step">
-          <div class="top"><span class="num">3</span><i class="fa-brands fa-whatsapp"></i></div>
-          <b>Solicitar Completo</b>
-          <p>Contacta por WhatsApp para recibir el video completo.</p>
+          <div class="top"><span class="num">3</span><i class="fa-solid fa-chart-line"></i></div>
+          <b>Estrategias de Crecimiento</b>
+          <p>Tácticas para crecer audiencia orgánica rápidamente.</p>
         </div>
 
         <div class="step">
-          <div class="top"><span class="num">4</span><i class="fa-solid fa-tools"></i></div>
-          <b>Herramientas</b>
-          <p>Accede a las plantillas y automatizaciones del sistema.</p>
+          <div class="top"><span class="num">4</span><i class="fa-solid fa-money-bill-wave"></i></div>
+          <b>Monetización</b>
+          <p>Múltiples formas de convertir audiencia en ingresos.</p>
         </div>
 
         <div class="step">
           <div class="top"><span class="num">5</span><i class="fa-solid fa-rocket"></i></div>
-          <b>Implementación</b>
-          <p>Comienza a crear, automatizar y convertir con soporte.</p>
+          <b>Escalabilidad</b>
+          <p>Cómo escalar tu sistema para ingresos mayores.</p>
         </div>
       </div>
     </section>
   </main>
+
+  <!-- POPUP DE NOMBRE -->
+  <div class="popup-overlay" id="popupOverlay"></div>
+  
+  <div class="name-popup" id="namePopup">
+    <div class="popup-header">
+      <div class="popup-icon">
+        <i class="fa-solid fa-user-plus"></i>
+      </div>
+      <h2 class="popup-title">¡Un Momento!</h2>
+      <p class="popup-subtitle">Ingresa tu nombre para tener acceso a la clase completa hoy mismo</p>
+    </div>
+    
+    <div class="name-input-container">
+      <input type="text" class="name-input" id="userNameInput" placeholder="Tu nombre completo" autocomplete="name">
+      <div style="text-align: center; margin-top: 10px; color: var(--muted); font-size: 0.9rem;">
+        <i class="fa-solid fa-info-circle"></i> Solo necesitamos tu nombre para personalizar tu acceso
+      </div>
+    </div>
+    
+    <div class="popup-buttons">
+      <button class="popup-btn popup-btn-primary" id="accessWhatsAppBtn">
+        <i class="fa-brands fa-whatsapp"></i> Acceder a Clase Completa
+      </button>
+      <button class="popup-btn popup-btn-secondary" id="closePopupBtn">
+        <i class="fa-solid fa-times"></i> Cancelar
+      </button>
+    </div>
+    
+    <div class="popup-note">
+      <i class="fa-solid fa-shield-alt"></i> Tu información es confidencial. Al acceder, recibirás la clase completa por WhatsApp.
+    </div>
+  </div>
 
   <!-- FOOTER -->
   <footer class="footer">
     <div class="disclaimer">
       <p><strong>AVISO LEGAL:</strong> Esta página NO es parte de Facebook, Google, Instagram, YouTube ni ninguna otra red social. Este sitio web no está afiliado, respaldado ni patrocinado por ninguna plataforma de redes sociales. Facebook es una marca comercial de Facebook, Inc. Instagram es una marca comercial de Instagram, Inc. Google es una marca comercial de Google LLC. YouTube es una marca comercial de YouTube, LLC.</p>
       
-      <p style="margin-top: 10px;">Todo el contenido en esta página es propiedad exclusiva de Aiviralsystem y está protegido por derechos de autor. El acceso al contenido completo está restringido a miembros registrados que acepten nuestros términos y condiciones.</p>
+      <p style="margin-top: 10px;">Todo el contenido en esta página es propiedad exclusiva de Aiviralsystem y está protegido por derechos de autor. El acceso al contenido completo está restringido y requiere registro. Los resultados pueden variar según el esfuerzo y dedicación individual.</p>
     </div>
     
     <div class="footer-links">
       <a href="#" id="termsLink">Términos y Condiciones</a>
-      <a href="#" id="privacyLinkFooter">Política de Privacidad</a>
-      <a href="#" id="contactLink">Contacto</a>
+      <a href="#" id="privacyLink">Política de Privacidad</a>
+      <a href="https://wa.link/kbjaz7" target="_blank">Contacto</a>
       <a href="#" id="disclaimerLink">Descargo de Responsabilidad</a>
     </div>
     
@@ -819,131 +807,239 @@
       const CONFIG = window.AIVIRALSYSTEM || {};
       const BRAND_NAME = CONFIG.BRAND_NAME || "Aiviralsystem";
       const WHATSAPP_LINK = CONFIG.WHATSAPP_LINK || "https://wa.link/kbjaz7";
-      const WHATSAPP_TEXT = encodeURIComponent(CONFIG.WHATSAPP_TEXT || "Hola, quiero acceder al sistema completo de Aiviralsystem.");
+      const WHATSAPP_MESSAGE = CONFIG.WHATSAPP_MESSAGE || "Hola, soy [NOMBRE], vengo de un anuncio y me gustaría tener acceso a la clase sobre la IA, redes sociales y automatización de ingresos.";
+      const BLOCK_AT_SECONDS = CONFIG.BLOCK_AT_SECONDS || 120;
+      const VIDEO_ID = CONFIG.VIDEO_ID || "2bWD3uLcwss";
       
       // Set brand name
       document.getElementById("brandName").textContent = BRAND_NAME;
       
-      // WhatsApp links
-      const whatsappLinks = ["floatWA", "ctaWhatsApp"];
-      whatsappLinks.forEach(id => {
-        const element = document.getElementById(id);
-        if (element) {
-          element.href = WHATSAPP_LINK + "?text=" + WHATSAPP_TEXT;
+      // Variables globales
+      let player = null;
+      let userName = "";
+      let popupShown = false;
+      let videoStarted = false;
+      
+      // Elementos del DOM
+      const playVideoBtn = document.getElementById("playVideoBtn");
+      const skipToAccessBtn = document.getElementById("skipToAccess");
+      const videoOverlay = document.getElementById("videoOverlay");
+      const showPopupBtn = document.getElementById("showPopupBtn");
+      const popupOverlay = document.getElementById("popupOverlay");
+      const namePopup = document.getElementById("namePopup");
+      const userNameInput = document.getElementById("userNameInput");
+      const accessWhatsAppBtn = document.getElementById("accessWhatsAppBtn");
+      const closePopupBtn = document.getElementById("closePopupBtn");
+      const timeText = document.getElementById("timeText");
+      const unlockText = document.getElementById("unlockText");
+      const bar = document.getElementById("bar");
+      
+      // Cargar API de YouTube
+      const tag = document.createElement('script');
+      tag.src = "https://www.youtube.com/iframe_api";
+      const firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+      
+      // Formatear tiempo
+      function formatTime(seconds) {
+        const mins = Math.floor(seconds / 60);
+        const secs = Math.floor(seconds % 60);
+        return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+      }
+      
+      // Mostrar popup de nombre
+      function showNamePopup() {
+        if (popupShown) return;
+        popupShown = true;
+        
+        // Pausar video si está reproduciéndose
+        if (player && typeof player.pauseVideo === 'function') {
+          player.pauseVideo();
         }
-      });
+        
+        // Mostrar overlay del video
+        videoOverlay.classList.add('active');
+        
+        // Mostrar popup
+        popupOverlay.classList.add('active');
+        namePopup.classList.add('active');
+        
+        // Enfocar input
+        setTimeout(() => {
+          userNameInput.focus();
+        }, 300);
+      }
       
-      // Scroll to preview
-      document.getElementById("scrollToPreview").addEventListener("click", function() {
-        document.querySelector(".video-preview-card").scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
+      // Ocultar popup
+      function hideNamePopup() {
+        popupOverlay.classList.remove('active');
+        namePopup.classList.remove('active');
+      }
+      
+      // Inicializar YouTube Player
+      window.onYouTubeIframeAPIReady = function() {
+        player = new YT.Player('yt', {
+          videoId: VIDEO_ID,
+          playerVars: {
+            'autoplay': 0,
+            'controls': 1,
+            'rel': 0,
+            'modestbranding': 1,
+            'showinfo': 0
+          },
+          events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+          }
         });
-      });
+      };
       
-      // Registration form
-      const registrationForm = document.getElementById("registrationForm");
-      if (registrationForm) {
-        registrationForm.addEventListener("submit", function(e) {
-          e.preventDefault();
-          
-          const fullName = document.getElementById("fullName").value.trim();
-          const email = document.getElementById("email").value.trim();
-          const phone = document.getElementById("phone").value.trim();
-          
-          if (!fullName || !email || !phone) {
-            alert("Por favor completa todos los campos requeridos.");
-            return;
-          }
-          
-          if (!document.getElementById("terms").checked) {
-            alert("Debes aceptar los términos y condiciones para continuar.");
-            return;
-          }
-          
-          // Save user data
-          const userData = {
-            name: fullName,
-            email: email,
-            phone: phone,
-            timestamp: new Date().toISOString(),
-            registered: true
-          };
-          
-          localStorage.setItem('aiviralsystem_user', JSON.stringify(userData));
-          
-          // Create WhatsApp message with user data
-          const personalizedMessage = `Hola, soy ${fullName}. Me registré en Aiviralsystem con el email ${email} y teléfono ${phone}. Quiero acceder al video completo y al sistema.`;
-          const encodedMessage = encodeURIComponent(personalizedMessage);
-          
-          // Show success message and redirect to WhatsApp
-          alert(`¡Registro exitoso, ${fullName}!\n\nAhora serás redirigido a WhatsApp para solicitar el video completo del sistema.`);
-          
-          // Redirect to WhatsApp with personalized message
-          window.open(WHATSAPP_LINK + "?text=" + encodedMessage, '_blank');
-          
-          // Enable video preview (in a real scenario, you'd unlock the video here)
-          // For now, we'll just show a success message
-          document.querySelector(".video-preview-card .preview-title").innerHTML = 
-            `<i class="fa-solid fa-check-circle" style="color: #25D366; margin-right: 10px;"></i> Registrado: ${fullName}`;
-          
-          document.querySelector(".video-preview-card .preview-text").innerHTML = 
-            "¡Registro completado! Ahora tienes acceso a la previsualización. Contacta por WhatsApp para el video completo.";
-          
-          document.querySelector(".video-preview-card .limited-access").innerHTML = 
-            `<b><i class="fa-solid fa-video" style="color: #f59e0b;"></i> Video Completo por WhatsApp</b>
-            <p>El video completo del sistema está listo para ti. Contáctanos por WhatsApp para recibirlo.</p>`;
-          
-          // Scroll to preview
-          document.querySelector(".video-preview-card").scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
+      function onPlayerReady(event) {
+        console.log('Player listo');
+        playVideoBtn.addEventListener('click', function() {
+          player.playVideo();
+          videoStarted = true;
+          document.getElementById("videoCard").scrollIntoView({behavior: 'smooth'});
         });
       }
       
-      // Check if user is already registered
-      const savedUser = localStorage.getItem('aiviralsystem_user');
-      if (savedUser) {
-        try {
-          const userData = JSON.parse(savedUser);
-          if (userData.registered) {
-            document.querySelector(".video-preview-card .preview-title").innerHTML = 
-              `<i class="fa-solid fa-check-circle" style="color: #25D366; margin-right: 10px;"></i> Bienvenido de vuelta, ${userData.name}`;
+      function onPlayerStateChange(event) {
+        // Cuando el video está reproduciéndose
+        if (event.data === YT.PlayerState.PLAYING) {
+          videoStarted = true;
+          
+          // Iniciar seguimiento del tiempo
+          startTimeTracking();
+        }
+        
+        // Cuando el video se pausa
+        if (event.data === YT.PlayerState.PAUSED) {
+          stopTimeTracking();
+        }
+        
+        // Cuando el video termina
+        if (event.data === YT.PlayerState.ENDED) {
+          stopTimeTracking();
+          if (!popupShown) {
+            showNamePopup();
+          }
+        }
+      }
+      
+      // Seguimiento del tiempo
+      let timeInterval = null;
+      
+      function startTimeTracking() {
+        if (timeInterval) clearInterval(timeInterval);
+        
+        timeInterval = setInterval(() => {
+          if (player && player.getCurrentTime) {
+            const currentTime = player.getCurrentTime();
+            const totalTime = player.getDuration() || 300; // 5 minutos por defecto
             
-            document.querySelector(".video-preview-card .preview-text").innerHTML = 
-              "Ya estás registrado. Contacta por WhatsApp si aún no has recibido el video completo del sistema.";
+            // Actualizar texto de tiempo
+            timeText.textContent = formatTime(currentTime);
+            
+            // Actualizar barra de progreso
+            const progressPercent = (currentTime / totalTime) * 100;
+            bar.style.width = `${progressPercent}%`;
+            
+            // Actualizar texto de desbloqueo
+            const timeLeft = BLOCK_AT_SECONDS - currentTime;
+            if (timeLeft > 0) {
+              unlockText.textContent = `Acceso en ${formatTime(timeLeft)}`;
+            } else {
+              unlockText.textContent = 'Acceso Disponible';
+              
+              // Mostrar popup a los 2 minutos si no se ha mostrado
+              if (currentTime >= BLOCK_AT_SECONDS && !popupShown) {
+                showNamePopup();
+                stopTimeTracking();
+              }
+            }
           }
-        } catch(e) {
-          console.error("Error loading user data:", e);
+        }, 1000);
+      }
+      
+      function stopTimeTracking() {
+        if (timeInterval) {
+          clearInterval(timeInterval);
+          timeInterval = null;
         }
       }
       
-      // Footer links functionality
-      document.querySelectorAll('#privacyLink, #privacyLinkFooter').forEach(link => {
-        link.addEventListener('click', function(e) {
-          e.preventDefault();
-          alert("Política de Privacidad:\n\nTus datos son confidenciales. Solo los usamos para verificar tu identidad y enviarte información sobre el sistema. No compartimos tu información con terceros.");
-        });
+      // Ir directo al acceso
+      skipToAccessBtn.addEventListener('click', function() {
+        showNamePopup();
+        document.getElementById("videoCard").scrollIntoView({behavior: 'smooth'});
       });
       
+      // Mostrar popup desde overlay
+      showPopupBtn.addEventListener('click', showNamePopup);
+      
+      // Cerrar popup
+      closePopupBtn.addEventListener('click', hideNamePopup);
+      popupOverlay.addEventListener('click', hideNamePopup);
+      
+      // Acceder por WhatsApp
+      accessWhatsAppBtn.addEventListener('click', function() {
+        userName = userNameInput.value.trim();
+        
+        if (!userName || userName.length < 2) {
+          alert("Por favor ingresa tu nombre completo para continuar.");
+          userNameInput.focus();
+          return;
+        }
+        
+        // Crear mensaje personalizado
+        const personalizedMessage = WHATSAPP_MESSAGE.replace("[NOMBRE]", userName);
+        const encodedMessage = encodeURIComponent(personalizedMessage);
+        const whatsappURL = `${WHATSAPP_LINK}?text=${encodedMessage}`;
+        
+        // Guardar nombre en localStorage
+        localStorage.setItem('aiviralsystem_user_name', userName);
+        
+        // Redirigir a WhatsApp
+        window.open(whatsappURL, '_blank');
+        
+        // Ocultar popup
+        hideNamePopup();
+        
+        // Continuar video si el usuario quiere
+        setTimeout(() => {
+          const continueWatching = confirm(`¡Perfecto ${userName}! Ya puedes continuar viendo la clase introductoria. ¿Deseas continuar?`);
+          if (continueWatching && player) {
+            videoOverlay.classList.remove('active');
+            player.playVideo();
+          }
+        }, 500);
+      });
+      
+      // Cargar nombre guardado si existe
+      const savedName = localStorage.getItem('aiviralsystem_user_name');
+      if (savedName) {
+        userNameInput.value = savedName;
+        userName = savedName;
+      }
+      
+      // Footer links
       document.getElementById('termsLink').addEventListener('click', function(e) {
         e.preventDefault();
-        alert("Términos y Condiciones:\n\n1. El acceso al sistema es exclusivo para miembros registrados.\n2. El video completo debe ser solicitado por WhatsApp.\n3. No está permitido compartir el contenido sin autorización.\n4. Nos reservamos el derecho de revocar el acceso por incumplimiento.");
+        alert("Términos y Condiciones:\n\n1. El acceso a la clase completa requiere registro.\n2. El contenido es propiedad intelectual de Aiviralsystem.\n3. No está permitida la distribución del material sin autorización.\n4. Los resultados pueden variar según la implementación.");
       });
       
-      document.getElementById('contactLink').addEventListener('click', function(e) {
+      document.getElementById('privacyLink').addEventListener('click', function(e) {
         e.preventDefault();
-        window.open(WHATSAPP_LINK, '_blank');
+        alert("Política de Privacidad:\n\nTu nombre se utiliza únicamente para personalizar tu acceso y comunicación. No compartimos tu información con terceros. Puedes solicitar la eliminación de tus datos en cualquier momento.");
       });
       
       document.getElementById('disclaimerLink').addEventListener('click', function(e) {
         e.preventDefault();
-        alert("Descargo de Responsabilidad:\n\nLos resultados pueden variar según el esfuerzo y dedicación de cada persona. Esta página es educativa y no garantiza ingresos. Consulta con un profesional antes de realizar inversiones.");
+        alert("Descargo de Responsabilidad:\n\nLos resultados mostrados pueden no ser típicos. El éxito depende del esfuerzo, dedicación y capacidad individual. Esta información es educativa y no garantiza ingresos.");
       });
       
-      // Prevent right-click and text selection for video content
-      document.querySelector('.video-preview-card').addEventListener('contextmenu', function(e) {
+      // Prevenir clic derecho en video
+      document.getElementById('yt').addEventListener('contextmenu', function(e) {
         e.preventDefault();
         return false;
       });
